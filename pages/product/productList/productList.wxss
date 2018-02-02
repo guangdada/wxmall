@@ -1,0 +1,252 @@
+/* pages/product/productList/productList.wxss */
+.m-list-floor {
+    background-color: #fff;
+    margin-top: 22rpx;
+}
+
+.g-row {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.m-list-floor .hd2, .m-list-floor .hd3 {
+    padding: 37rpx 0;
+}
+
+.m-list-floor .hd3 .dtit {
+    font-size: 37rpx;
+    text-align: center;
+}
+
+.m-list-floor .hd3 .desc {
+    font-size: 24rpx;
+    text-align: center;
+    color: #999;
+}
+
+.m-list-floor .hd2 .desc {
+    font-size: 24rpx;
+    text-align: center;
+}
+
+.m-goods-grid .list .item {
+    display: inline-block;
+    width: 350rpx;
+    overflow:hidden;
+    margin-left: 19rpx;
+    margin-bottom: 30rpx;
+    height: 570rpx;
+    vertical-align: top;
+}
+
+.m-goods-grid .item .hd {
+    position: relative;
+}
+
+.m-goods-grid .pic {
+    width: 100%;
+    height:350rpx;
+    display: block;
+    background-color: #f4f4f4;
+    border-radius: 0.0399975rpx 0.0399975rpx 0 0;
+}
+
+.m-goods-grid .specification {
+    border: 1px solid #b4a078;
+    border-radius: 5rpx;
+    position: absolute;
+    width: 35rpx;
+    top: 0;
+    margin-top: 9rpx;
+    margin-left: 9rpx;
+    padding: 7rpx 0;
+    line-height: 1.1;
+    color: #b4a078;
+    left: 0;
+    z-index: 4;
+    font-size: 20rpx;
+    text-align: center;
+}
+
+.m-goods-grid .count {
+    display: block;
+    text-align: center;
+}
+
+.m-goods-grid .list .item .desc {
+    bottom: 0;
+    height: 28rpx;
+    width: 100%;
+    background: #f1ece2;
+    border-radius: 0 0 0.0399975rpx 0.0399975rpx;
+    font-size: 24rpx;
+    color: #9f8a60;
+    letter-spacing: 0;
+    line-height: 29rpx;
+    padding: 20rpx 9rpx;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+
+.m-goods-grid .list .item .name {
+    margin: 20rpx auto 9rpx;
+    padding: 0 9rpx;
+    line-height: 1;
+    text-align: left;
+    font-size: 27rpx;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    color: #333;
+}
+
+.m-goods-grid .list .item .price {
+    line-height: 1;
+    font-size: 32rpx;
+    text-align: left;
+    color: #b4282d;
+    margin-top:10rpx;
+    padding: 0 9rpx;
+}
+
+/**顶部分类 **/
+
+.m-navs {
+  height: 60rpx;
+  padding: 0 30rpx;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.m-navs::-webkit-scrollbar {
+  display: none;
+}
+
+.m-navs .txt {
+  display: inline-block;
+  padding: 0 15rpx;
+  line-height: 60rpx;
+  font-size: 27rpx;
+  color: #8f8f8f;
+  text-align: center;
+}
+
+.m-navs view.active .txt {
+  color: #e21a81;
+}
+
+.m-navs view.active .txt:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4rpx;
+  background-color: #e21a81;
+}
+
+.m-navs view {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  flex-grow: 1;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -moz-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: relative;
+  margin-left: 48rpx;
+}
+
+.m-navs>view:first-child {
+  margin-left: 0;
+}
+
+.disflex {
+  display: flex;
+  flex-grow: row nowrap;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+/**顶部搜索**/
+
+.top-line {
+  display: flex;
+  flex-grow: row nowrap;
+  -webkit-box-align: center;
+  align-items: center;
+  padding: 25rpx 22rpx 18rpx 22rpx;
+}
+
+.top-line .logo {
+  /* width: 138rpx; */
+  width: 160rpx;
+  height: 40rpx;
+  /*   background-image: url(http://img02.camel.com.cn/image/logo138x40_1.png); *//*  background-image: url(http://img02.camel.com.cn/image/logo138x40_1.png); */
+  display: inline-block;
+  margin-right: 20rpx;
+  background-size: cover;
+  background-position: center;
+}
+
+.m-searchTop {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  flex-grow: 1;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -moz-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  height: 55rpx;
+  font-size: 27rpx;
+  background-color: #fff;
+  border-radius: 8rpx;
+  border: 1px solid #ccc;
+  width: 520rpx;
+}
+
+.zw-search-link {
+  display: block;
+  width: 100%;
+}
+
+.m-searchTop .icon-search {
+  display: inline-block;
+  width: 60rpx;
+  height: 37rpx;
+  vertical-align: top;
+  background-image: url(http://img02.camel.com.cn/image/zw_search.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  margin-right: 9rpx;
+}
+
+.m-searchTop .placeholder {
+  color: #d9d9d9;
+  vertical-align: top;
+}

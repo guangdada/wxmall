@@ -1,0 +1,42 @@
+<!--pages/coupon/coupon.wxml-->
+ <view id="shopping-cart" class="{{(couponList.length==0 && !loading) ? '': 'hidden'}}  shopping-cart">
+  <view class="empty">
+    <image class="icon" src="/images/cp.png" alt="优惠券 "></image>
+    <text>⊙０⊙您还没有优惠券</text>
+    <view class="btn btn-default" ui-sref="home" catchtap='navigateTo'>去兑换</view>
+  </view>
+</view> 
+<view class="list-tab flexR" catchtap='toggleView'>
+  <view class="{{nowRole==0?'checked-item':''}}" data-index="0" style="background-color:#f7f7f7;padding:8rpx 0;">全场优惠券</view>
+  <view class="{{nowRole==1?'checked-item':''}}" data-index="1" style="background-color:#f7f7f7;padding:8rpx 0;">失效优惠券</view>
+</view>
+<!--列表展示  -->
+<swiper bindchange="toggleSwiper" current='{{currentIndex}}' style="height:{{winHeight}}px;">
+  <!--全场优惠券  -->
+  <swiper-item class="{{(couponList.length>0 && !loading) ? '': 'hidden'}} ">
+    <view style='background-image: url(/images/redc.jpg);height:130px;margin-bottom:30rpx;background-color:red;' wx:for="{{2}}">
+      <view style='padding:16rpx 0;'>
+        <view  class="coupon-content">
+          <view class="coupon-left-content">
+            <view class="coupon-left-price">￥5</view>
+            <view  class="coupon-left-des">全场通用</view>
+
+          </view>
+          <view  class="coupon-right-content">
+            <view class="coupon-right-name">
+              店铺优惠券
+            </view>
+            <view class="coupon-right-condition">订单满30元使用</view>
+            <view class="coupon-right-time">有效期：2018.2.1-2018.1.3</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </swiper-item>
+
+  <!--失效优惠券  -->
+  <swiper-item>
+  
+  </swiper-item>
+</swiper>
+

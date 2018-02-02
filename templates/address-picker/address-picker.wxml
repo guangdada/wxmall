@@ -1,0 +1,25 @@
+<template name="address-picker">
+    <view style="display:flex;margin:0;height:100%;align-items: center;justify-content: center;position:relative;top:6rpx;">
+        <view style="width:100%;">
+            <picker bindchange="bindProvinceChange" value="{{provinceIndex}}" range="{{province}}">
+                <view style="text-align:center;font-size:30rpx;">
+                {{province[provinceIndex]}}
+                </view>
+            </picker>
+        </view>
+        <view style="width:100%;">
+            <picker bindchange="bindCityChange" value="{{cityIndex}}" range="{{city}}">
+                <view style="text-align:center;padding-left:20rpx;font-size:30rpx">
+                {{city[cityIndex]}}
+                </view>
+            </picker>
+        </view>
+        <view style="width:100%;">
+            <picker bindchange="bindDistrictChange" value="{{districtIndex}}" range="{{district}}">
+                <view style="text-align:center;font-size:30rpx;">
+                {{district[districtIndex]}}
+                </view>
+            </picker>
+        </view>
+    </view>
+</template>

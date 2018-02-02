@@ -1,0 +1,23 @@
+<!--pages/service/service.wxml-->
+<view class="top-banner">
+  <!--banner  -->
+  <image src="http://image.chubanyun.net/images/TRQ/investment_banner.png" mode="widthFix"></image>
+</view>
+<view class="investment-people-list flexC">
+  <view class="item flexR" wx:for="{{5}}" bindtap='toDetail' data-type="people">
+    <view class="image flexC">
+      <image src='/images/wang.png' class="peoloe" mode="widthFix"></image>
+    </view>
+    <view class="people-info flexC">
+      <view>
+        <text>徐小平</text>总经理</view>
+      <view class="a-line">电话：17545458545</view>
+      <view>汽车保险 保险</view>
+    </view>
+    <view class="do-info flexC">
+      <view>
+        <text>502</text>人咨询</view>
+       <view class="service-consult" bindtap='consult'>咨询</view> 
+    </view>
+  </view>
+</view>

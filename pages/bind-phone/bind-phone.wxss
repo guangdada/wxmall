@@ -1,0 +1,293 @@
+/* pages/bind-phone/bind-phone.wxss */
+
+.title {
+  position: fixed;
+  width: 100%;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /*垂直居中*/
+  justify-content: center; /*水平居中*/
+  vertical-align: middle;
+}
+
+.weui-cells__title {
+  margin-top: 0.77em;
+  margin-bottom: 0.3em;
+  padding-left: 15px;
+  padding-right: 15px;
+  color: #999;
+  font-size: 14px;
+}
+
+.weui-cells {
+  position: relative;
+  margin-top: 1.17647059em;
+  background-color: #fff;
+  line-height: 1.41176471;
+  font-size: 17px;
+}
+
+.weui-cells:before {
+  top: 0;
+  border-top: 1rpx solid #d9d9d9;
+}
+
+.weui-cells:after, .weui-cells:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  color: #d9d9d9;
+}
+
+.weui-cells:after {
+  bottom: 0;
+  border-bottom: 1rpx solid #d9d9d9;
+}
+
+.weui-cells_after-title {
+  margin-top: 0;
+}
+
+.weui-cell {
+  padding: 10px 15px;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.weui-cell:before {
+  content: " ";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: 1px;
+  border-top: 1rpx solid #d9d9d9;
+  color: #d9d9d9;
+  left: 15px;
+}
+
+.weui-cell:first-child:before {
+  display: none;
+}
+
+.weui-cell_input {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.weui-cell_vcode {
+  padding-right: 0;
+}
+
+.weui-label {
+  width: 105px;
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
+.weui-input {
+  height: 2.58823529em;
+  min-height: 2.58823529em;
+  line-height: 2.58823529em;
+}
+
+.weui-cell__ft {
+  text-align: right;
+  color: #999;
+}
+
+.weui-vcode-btn, .weui-vcode-img {
+  margin-left: 5px;
+  height: 2.58823529em;
+  vertical-align: middle;
+}
+
+.weui-vcode-btn {
+  display: inline-block;
+  padding: 0 0.6em 0 0.7em;
+  border-left: 1px solid #e5e5e5;
+  line-height: 2.58823529em;
+  font-size: 17px;
+  /*  color: #3cc51f; */
+  color: #24b2f4;
+  white-space: nowrap;
+}
+
+.weui-vcode-btn:active {
+  color: #52a341;
+}
+
+.weui-btn {
+  margin-top: 15px;
+}
+
+.weui-btn:first-child {
+  margin-top: 0;
+}
+
+.flex_Center {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-direction: column;
+}
+
+.backgroundViewStyle {
+  margin-top: 30rpx;
+  background: white;
+  height: 500rpx;
+  flex-direction: column;
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.demoButtonStyle {
+  background-color: #3cb371;
+  width: 60%;
+  height: 100rpx;
+  color: #fff;
+}
+
+.dialog_mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.dialog_container {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  background: white;
+  transform: translateY(150%);
+  transition: all 0.4s ease;
+  z-index: 11;
+}
+
+.dialog_show .dialog_container {
+  transform: translateY(0);
+}
+
+.dialog_show .dialog_mask {
+  display: block;
+}
+
+.dialog__mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.dialog__container {
+  position: fixed;
+  bottom: 0;
+  width: 750rpx;
+  transform: translateY(150%);
+  transition: all 0.4s ease;
+  z-index: 11;
+  height: 100%;
+}
+
+.dialog--show .dialog__container {
+  transform: translateY(0);
+}
+
+.dialog--show .dialog__mask {
+  display: block;
+}
+
+/* 错误提示 */
+
+.toptips {
+  display: block;
+  position: fixed;
+  -webkit-transform: translateZ(0) translateY(-100%);
+  width: 100%;
+  /* 至少有一行的高度，保证第一次动画显示正常 */
+  min-height: 32px;
+  top: 0;
+  line-height: 2.3;
+  font-size: 14px;
+  text-align: center;
+  color: #fff;
+  background-color: #e64340;
+  z-index: 110;
+  /* 动画部分 */
+  transition: all 0.4s ease;
+}
+
+.toptips--show {
+  -webkit-transform: translateZ(0) translateY(0);
+}
+
+.random-code {
+  height: 45px;
+  width: 110px;
+  line-height: 45px;
+  font-size: 33px;
+  background-color: #93d9fa;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+/**验证码弹出框*/
+
+.pop-layer {
+  width: 600rpx;
+  height: 500rpx;
+  background: white;
+  color: #333;
+  font-size: 30rpx;
+  border-radius: 20rpx;
+}
+
+.confirm-content {
+  background-color: #93d9fa;
+  width: 100%;
+  height: 33px;
+  font-size: 15px;
+  padding-top: 24rpx;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.code-input {
+  height: 40px;
+  width: 120px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #93d9fa;
+  text-align: center;
+}
+
+.code-des {
+  background-color: #93d9fa;
+  width: 100%;
+  height: 33px;
+  text-align: center;
+  font-size: 15px;
+  padding-top: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+}

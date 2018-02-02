@@ -1,0 +1,65 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/basket/basket",
+    "pages/center/center",
+    "pages/product/productList/productList",
+    "pages/product/productDetail/productDetail",
+    "pages/settlement/settlement",
+    "pages/addresses/addresses",
+    "pages/address-edit/address-edit",
+    "pages/orders/orders",
+    "pages/coupon/coupon",
+    "pages/points/points",
+    "pages/service/service",
+    "pages/bind-phone/bind-phone",
+    "pages/logs/logs"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "首页",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f0145a"
+  },
+  "tabBar": {
+    "color": "#666",
+    "selectedColor": "#d81e06",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "#d9d9d9",
+    "list": [
+      {
+        "selectedIconPath": "images/tab_icons_01.png",
+        "iconPath": "images/zw_icony1.png",
+        "pagePath": "pages/index/index",
+        "text": "首页"
+      },
+      {
+        "selectedIconPath": "images/tab_icons_02.png",
+        "iconPath": "images/zw_iconb2.png",
+        "pagePath": "pages/points/points",
+        "text": "积分"
+      },
+      {
+        "selectedIconPath": "images/tab_icons_04.png",
+        "iconPath": "images/zw_iconb4.png",
+        "pagePath": "pages/basket/basket",
+        "text": "购物车"
+      },
+      {
+        "selectedIconPath": "images/tab_icons_06.png",
+        "iconPath": "images/zw_iconb6.png",
+        "pagePath": "pages/service/service",
+        "text": "生活服务"
+      },
+     
+      {
+        "selectedIconPath": "images/tab_icons_05.png",
+        "iconPath": "images/zw_iconb5.png",
+        "pagePath": "pages/center/center",
+        "text": "我的"
+      }
+    ]
+  }
+}

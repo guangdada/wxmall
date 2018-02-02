@@ -1,0 +1,118 @@
+<!--pages/center/center.wxml-->
+<view class="m-ucenter g-row greybg">
+  <view class="m-uc-top">
+    <view class="m-profile">
+      <image class="avatar" src="{{ userInfo.avatarUrl }}" alt=""></image>
+      <view class="info">
+        <view class="nickname">
+          {{ userInfo.nickName }}
+        </view>
+        <view class="membershipLevel">
+          <text class="memberTitle1">菜鸟小店</text>
+        </view>
+        <!-- <view class="icon ion-ios-arrow-right top_right"></view> -->
+      </view>
+    </view>
+  </view>
+
+  <view class="m-uc-wrap">
+    <navigator url='../orders/orders?t=all'>
+      <view class="m-uc-wraptit" bindtap='navigatorOrders'>
+        <text class="txt">我的订单</text>
+        <view class="icon-arrow-right">查看全部订单></view>
+      </view>
+    </navigator>
+    <view class="m-uc-menu">
+      <view class="list">
+        <view class="item">
+          <navigator url="../orders/orders?t=unpaid">
+            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon1.png" alt=""></image>
+            <text class="txt">待付款</text>
+            <text class="red-dot">0</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <navigator url="../orders/orders?t=undelivered">
+            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon2.png" alt=""></image>
+            <text class="txt">待发货</text>
+            <text class="red-dot">0</text>
+          </navigator>
+        </view>
+        <view class="item">
+          <navigator url="../orders/orders?t=unreceived">
+            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon3.png" alt=""></image>
+            <text class="txt">待取货</text>
+            <text class="red-dot">0</text>
+          </navigator>
+        </view>
+        <!-- <view class="item">
+          <navigator url="../orders/orders?t=unreceived">
+            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon4.png" alt=""></image>
+            <text class="txt">待评价</text>
+            <text class="red-dot">0</text>
+          </navigator>
+        </view> -->
+        <view class="item">
+          <navigator url="../orders/orders?t=unreceived">
+            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon5.png" alt=""></image>
+            <text class="txt">已完成</text>
+          </navigator>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <view class="m-uc-wrap">
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/coupon/coupon" catchtap='navigateTo'>
+      <view class="list-icon-wrap">
+        <image src="/images/coupon.png" class="list-icon"></image>
+      </view>
+      <view class="list-text">优惠券</view>
+      <view class="arrow-wrap">2张
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+    </view>
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/points/points" catchtap='navigateToPoint'>
+      <view class="list-icon-wrap">
+        <image src="/images/point.png" class="list-icon" style="width:43.18rpx;height:44.84rpx;"></image>
+      </view>
+      <view class="list-text">积分</view>
+      <view class="arrow-wrap">2000分
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+    </view>
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/bind-phone/bind-phone" catchtap='navigateTo'>
+      <view class="list-icon-wrap">
+        <image src="/images/phone.png" class="list-icon" style="width:54rpx;height:44rpx;margin-left:-10rpx;"></image>
+      </view>
+      <view class="list-text">手机号</view>
+      <text class="list-text-next">15678945612</text>
+      <view class="arrow-wrap">绑定手机号
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+    </view>
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/addresses/addresses" catchtap='navigateTo'>
+      <view class="list-icon-wrap">
+        <image src="/images/address.png" class="list-icon" style="width:42.18rpx;height:46rpx;position:relative;top:-4rpx;"></image>
+      </view>
+      <view class="list-text">收货地址</view>
+      <view class="arrow-wrap">
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+    </view>
+    <view class="list-item" hover-class="none" data-tip="2">
+      <view class="list-icon-wrap">
+        <image src="/images/code.png" class="list-icon" style="width:40.18rpx;height:40.84rpx;"></image>
+      </view>
+      <view class="list-text">推荐码</view>
+      <view class="arrow-wrap">dfgdf</view>
+    </view>
+    <view class="list-item" hover-class="none" data-tip="2">
+      <view class="list-icon-wrap">
+        <image src="/images/business.png" class="list-icon" style="width:43.18rpx;height:40.84rpx;"></image>
+      </view>
+      <view class="list-text">业务合作</view>
+      <view class="arrow-wrap">15666558958</view>
+    </view>
+  </view>
+</view>

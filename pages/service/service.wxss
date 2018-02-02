@@ -1,0 +1,105 @@
+/* pages/service/service.wxss */
+
+.flexC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.flexR {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.investment-people-list {
+  padding: 0 24rpx 80rpx;
+}
+
+/* .investment-people-list view:nth-last-child(1) {
+  border-bottom: 0;
+} */
+
+.investment-people-list .item {
+  width: 100%;
+  padding: 32rpx 0;
+  border-bottom: 1px solid #eee;
+  justify-content: flex-start;
+}
+
+.investment-people-list .item .image {
+  width: 140rpx;
+  height: 130rpx;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.investment-people-list .item .image image {
+  width: 120rpx;
+  height: 120rpx;
+  border: 1px solid #d4a854;
+  border-radius: 50%;
+}
+
+.investment-people-list .people-info view {
+  font-size: 28rpx;
+  text-align: left;
+  margin-bottom: 10rpx;
+  width: 100%;
+}
+
+.investment-people-list .people-info {
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 400rpx;
+}
+
+.investment-people-list .people-info text {
+  font-size: 36rpx;
+  padding-right: 27rpx;
+  font-weight: 500;
+}
+
+.investment-people-list .people-info view:nth-of-type(2) {
+  color: #666;
+}
+
+.investment-people-list .people-info view:nth-of-type(3) {
+  color: #999;
+  font-size: 24rpx;
+}
+
+.investment-people-list .do-info {
+  align-items: flex-end;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.investment-people-list text {
+  font-size: 40rpx;
+  color: #cf9d3e;
+}
+
+page view {
+  box-sizing: border-box;
+}
+
+.top-banner {
+  width: 100%;
+  height: 300rpx;
+}
+
+.top-banner image {
+  width: 100%;
+  display: block;
+  height: 100%;
+}
+
+.service-consult {
+  border: 1px solid #999;
+  margin-top: 10rpx;
+  padding: 6rpx 10rpx;
+  border-radius: 10rpx;
+}

@@ -1,0 +1,130 @@
+<!--pages/product/productDetail/productDetail.wxml-->
+<view class="{{toast.toastClass}}">{{toast.toastMessage}}</view>
+<scroll-view class="page" scroll-y="true" bindscrolltolower="lower" style="height:100%" scroll-into-view="{{toView}}" upper-threshold="10" bindscroll="scroll" scroll-top="{{scrollTop}}">
+  <view class="pdcontainer greybg">
+    <view class="zw-banner detail-swiper">
+      <swiper indicator-dots="{{indicatorDots}}" indicator-color="{{indicatorColor}}" circular="{{circular}}" indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{imgUrls}}">
+          <swiper-item>
+            <navigator url="../product/productDetail/productDetail" hover-class="changestyle">
+              <image src="{{item}}" class="slide-image" width="750" height="376" />
+            </navigator>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="dt-section">
+      <view class="m-detailBase">
+        <view class="info">
+          <view class="name">山西猕猴桃/4斤</view>
+          <view class="desc">
+            <text wx:if="{{activityType==1 || activityType==3}}">抢购倒计时：1天2小时30分</text>
+            <text style="color:black;position:absolute;right:30rpx;font-size:28rpx;">已售<text style="color:#b4282d;"> 821 </text>份</text>
+          </view>
+          <view class="desc">配送日期：2018-08-12</view>
+          <view class="desc" wx:if="{{activityType==2}}">预计2018-01-26日后到货，现在可下单</view>
+          <view class="desc" wx:if="{{activityType==3}}">配送条件：满两件才可下单</view>
+          <view class="price">￥140.00</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="dt-section-2">
+      <view class="m-listItem m-li-noborder">
+        <view class="left">
+          <text class="txt">服务：</text>
+        </view>
+        <view class="middle">
+          <view class="m-serversEntry">
+            <view class="mse-wrap">
+              <view class="item">保价服务</view>
+              <view class="item">100%正品保障</view>
+            </view>
+            <view class="mse-wrap">
+              <view class="item">59元包邮</view>
+              <view class="item">七天无理由退换</view>
+            </view>
+          </view>
+        </view>
+        <view class="right">
+          <i class="icon ion-ios-arrow-right"></i>
+        </view>
+      </view>
+    </view>
+
+    <view class="dt-section-2 de-content">
+      <view class="deitalInfos">
+        <view class="m-attrCon">
+          <view class="attrList">
+            <view class="tt">商品参数</view>
+            <view class="item">
+              <view class="left">货号</view>
+              <view class="right">
+                <view class="con">A712357085</view>
+              </view>
+              <view class="left">材料</view>
+              <view class="right">
+                <view class="con">xxxxxx</view>
+              </view>
+            </view>
+          </view>
+        </view>
+        <image src="https://img01.camel.com.cn/product/detail/A712357085/7b743ca4-54fe-408a-aeb6-380603f20c73.jpg" alt="" mode="widthFix"></image>
+      </view>
+      <view class="m-commonIssues m-rmcdGoods">
+        <view class="tt">
+          <view class="line"></view>
+          <span class="text">大家都在看</span>
+        </view>
+        <view class=""></view>
+      </view>
+    </view>
+
+    <view class="m-btnGroup">
+      <view class="inner">
+        <view class="btn btn2" bindtap='addCar' data-type="buyAdd">加入购物车</view>
+        <view class="btn btn3" bindtap="addCar" data-type="buyNow">立即购买</view>
+      </view>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 加入购物车面板 -->
+<view class="adding-to-cart-popup-background" style="display:{{popDisplay}}">
+  <view class="adding-to-cart-popup">
+    <view class="header">
+      <view class="close" bindtap="closePop">
+        <image src="/images/close.png"></image>
+      </view>
+      <image alt="" class="product-image" src="{{product.goods_image}}"></image>
+      <view class="product-info">
+        <view class="stock-price text-primary p">￥ {{goodsPrice}}</view>
+        <view class="stock p">库存{{totalStock}}件</view>
+        <view class="spec-title p">请选择口味和重量</view>
+      </view>
+    </view>
+    <view class="section">
+      <view class="specs" wx:for="{{product.spec}}" wx:for-item="spec">
+        <text class="h2">{{spec.spec_name}}</text>
+        <view class="spec-btns">
+          <button wx:for="{{spec.value}}" data-spec-id="{{spec.spec_id}}" data-value-id="{{item.value_id}}" disabled="{{item.disabled}}" class="{{item.class}}" catchtap="choseSpec">{{item.value_text}}</button>
+        </view>
+      </view>
+      <view class="quantity">
+        <text class="h2">购买数量</text>
+        <view class="counter">
+          <button class="{{subButton.class}}" disabled="{{subButton.disabled}}" catchtap="subShopNum">-</button>
+          <text class="{{buyNumClass}}">{{buyNum}}</text>
+          <button class="{{addButton.class}}" disabled="{{addButton.disabled}}" catchtap="addShopNum">+</button>
+        </view>
+      </view>
+    </view>
+    <view class="footer" wx:if="{{chooseType=='buyAdd'}}">
+      <button  bindtap="navigateToCart">确定</button>
+    </view>
+     <view class="footer" wx:if="{{chooseType=='buyNow'}}">
+      <button  bindtap="navigateToSettlement">确定</button>
+    </view>
+  </view>
+</view>

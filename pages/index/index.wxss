@@ -1,0 +1,394 @@
+/**index.wxss**/
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
+.page {
+  background-color: #f8f8f8;
+}
+
+.swiperPicture {
+  display: inline;
+}
+
+.section {
+  margin-top: 0px;
+  margin-bottom: 23.4rpx;
+  background-color: white;
+  padding: 0px;
+}
+
+/**第二展示区**/
+
+.activity-list {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  padding: 0;
+}
+
+.activity {
+  width: 25%;
+  text-align: center;
+}
+
+.activity image {
+  width: 117rpx;
+  height: 117rpx;
+  margin: 0 auto;
+  margin-top: 28.08rpx;
+  border-radius: 50%;
+}
+
+.activity label {
+  display: block;
+  line-height: 65.52rpx;
+  font-size: 28.08rpx;
+}
+
+/** 第三展示区**/
+
+.pm-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 38rpx;
+}
+
+.promote-sale-list {
+  /*  display: flex;
+  flex-direction: row; */
+  display: inline-block;
+  background-color: white;
+  padding: 0;
+}
+
+.promote-sale {
+  width: 250rpx;
+  /*  width: 33%;  */
+  text-align: center;
+  float: left;
+}
+
+.promote-sale label {
+  padding-top: 16rpx;
+  line-height: 50rpx;
+}
+
+.promote-sale image {
+  width: 117rpx;
+  height: 137rpx;
+  margin: 0 auto;
+  margin-top: 10rpx;
+  margin-bottom: 10rpx;
+}
+
+/** 第四展示区**/
+
+.zw-title {
+  height: 75rpx;
+  line-height: 75rpx;
+  padding: 0 28rpx;
+  /* background-color: #fff; */
+  background-color:#f3f3f3;
+}
+
+.zw-proul2 {
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.zw-proli2 {
+  width: 372rpx;
+  margin-left: 6rpx;
+  margin-bottom: 6rpx;
+  float: left;
+}
+
+.zw-proli2:nth-of-type(odd) {
+  margin-left: 0;
+}
+
+.zw-proli2 image {
+  width: 372rpx;
+  height: 372rpx;
+  display: block;
+}
+
+.zw-proli-tips {
+  line-height: 37rpx;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  -o-text-overflow: ellipsis;
+  text-overflow: ellipsis;
+  font-size: 24rpx;
+  color: #ab075b;
+  background-color: #f7f7f7;
+}
+
+.zw-banner image {
+  width: 100%;
+  display: block;
+}
+
+abbr, body, fieldset, html, iframe, image {
+  border: 0;
+}
+
+.zw-title .more {
+  float: right;
+  color: #a5a5a5;
+  font-size: 24rpx;
+}
+
+.zw-title .title-item {
+  font-size: 34rpx;
+}
+
+.zw-proul {
+  padding-top: 11rpx;
+  overflow-y: hidden;
+  display: flex;
+  background-color: #fff;
+}
+
+.zw-proli {
+  width: 372rpx;
+  margin-left: 6rpx;
+  flex-shrink: 0;
+}
+
+.zw-proli:first-child {
+  margin-left: 0;
+}
+
+.zw-proli image {
+  width: 100%;
+  height: 372rpx;
+  display: block;
+}
+
+.zw-proli-info {
+  background-color: #ededed;
+  text-align: center;
+  width: 100%;
+  height: 146rpx;
+  align-items: center;
+  padding-top: 15rpx;
+}
+
+.zw-proli-info view {
+  color: #1a1a1a;
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.zw-proli-info .send-time, .zw-proli-info .buy-time {
+  color: #1a1a1a;
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-left: 26rpx;
+}
+
+.zw-proli-info .send-condition {
+  color: #1a1a1a;
+  font-size: 26rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: left;
+  margin-left: 26rpx;
+}
+
+.zw-proli-info .price-wrap {
+  margin-top: 5px;
+  color: #f52b2b;
+}
+
+.zw-proli-info .price {
+  font-size: 37rpx;
+}
+
+/**顶部分类 **/
+
+.m-navs {
+  height: 68rpx;
+  padding: 0 30rpx;
+  overflow-y: hidden;
+  white-space: nowrap;
+}
+
+.m-navs::-webkit-scrollbar {
+  display: none;
+}
+
+.m-navs .txt {
+  display: inline-block;
+  padding: 0 15rpx;
+  line-height: 60rpx;
+  font-size: 27rpx;
+  color: #8f8f8f;
+  text-align: center;
+}
+
+.m-navs view.active .txt {
+  color: #e21a81;
+}
+
+.m-navs view.active .txt:after {
+  content: " ";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4rpx;
+  background-color: #e21a81;
+}
+
+.m-navs view {
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  flex-grow: 1;
+  display: flex;
+  -webkit-flex-flow: row nowrap;
+  -moz-flex-flow: row nowrap;
+  -ms-flex-flow: row nowrap;
+  flex-flow: row nowrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  -moz-align-items: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  justify-content: center;
+  -webkit-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  -ms-flex-negative: 0;
+  flex-shrink: 0;
+  position: relative;
+  margin-left: 48rpx;
+}
+
+.m-navs>view:first-child {
+  margin-left: 0;
+}
+
+.disflex {
+  display: flex;
+  flex-grow: row nowrap;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.swiper-tab {
+  width: 100%;
+  border-bottom: 2rpx solid #777;
+  text-align: center;
+  line-height: 80rpx;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  width: 25%;
+  color: #777;
+}
+
+.on {
+  color: #da7c0c;
+  border-bottom: 5rpx solid #da7c0c;
+}
+
+.swiper-box {
+  display: block;
+  height: calc(90vh);
+  width: 100%;
+  overflow: auto;
+}
+
+.swiper-box view {
+  /*  text-align: center; */
+}
+
+.list-tab {
+  width: 100%;
+  /*  height: 80rpx; *//*  border-bottom: 1px solid #eee; */
+  justify-content: space-around;
+  position: fixed;
+  top: -2rpx;
+}
+
+.flexR {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+}
+
+.flexC {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.list-tab view {
+  width: 260rpx;
+  font-size: 32rpx;
+  text-align: center;
+  line-height: 64rpx;
+}
+
+.list-tab .checked-item {
+  border-bottom: 4rpx solid #239fff;
+  color: #239fff;
+  font-weight: 600;
+  line-height: 60rpx;
+}
+
+page view {
+  box-sizing: border-box;
+}
+
+swiper-item {
+  overflow: auto !important;
+}
+
+swiper {
+  overflow: auto;
+  position: relative;
+  top: 40rpx;
+}
+
+.list-tab-bgcolor {
+  background-color: #f7f7f7;
+}
