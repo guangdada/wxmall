@@ -1,7 +1,7 @@
 <!--index.wxml-->
 <view>
   <view class="list-tab flexR" >
-    <scroll-view scroll-x wx:for="{{navList}}" wx:key="{{item.id}}" class="{{id == item.id ? 'checked-item' : ''}}" data-id="{{item.id}}" data-index="{{index}}"  style="background-color:#f7f7f7;padding:8rpx 0;" catchtap='toggleView'>{{item.name}}</scroll-view>
+    <scroll-view scroll-x wx:for="{{navList}}" wx:key="{{item.id}}" class="{{showIndex == item.show_index ? 'checked-item' : ''}}" data-id="{{item.id}}" data-index="{{index}}"  style="background-color:#f7f7f7;padding:8rpx 0;" catchtap='toggleView'>{{item.name}}</scroll-view>
   </view>
   <!--列表展示  -->
   <swiper bindchange="toggleSwiper" current='{{currentIndex}}' style="height:{{winHeight}}px;">
