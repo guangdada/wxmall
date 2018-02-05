@@ -17,14 +17,15 @@
         </swiper>
       </view>
 
+    <!--限时团购-->
       <view class='section' style="clear:both;">
         <view class="layort-h">
           <view class="zw-title" style="height:80rpx;top:20rpx;position:relative;">
             <text>限时团购</text>
           </view>
           <view class="zw-proul2">
-            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
-              <image src="{{iitem.list_pic_url}}" alt=""></image>
+            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{groupGoods}}" wx:for-item="iitem" wx:for-index="iindex">
+              <image src="{{iitem.item_pic_url}}" alt=""></image>
               <view class="zw-proli-tips">{{iitem.name}}</view>
               <view class="zw-proli-info">
                 <view class="price-wrap">
@@ -39,17 +40,18 @@
               </view>
             </view>
             <view class="zw-banner">
-              <image style="width:750rpx; height:376rpx;" src="/images/c2.jpg" alt=""></image>
+              <image style="width:750rpx; height:376rpx;" src="{{groupAd[0].image_url}}" alt=""></image>
             </view>
           </view>
         </view>
 
+        <!--精品秒杀-->
         <view class="layort-h">
           <view class="zw-title">
             <text class="title-item">精品秒杀</text>
           </view>
           <view class="zw-proul2">
-            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
+            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{hotGoods}}" wx:for-item="iitem" wx:for-index="iindex">
               <image src="{{iitem.list_pic_url}}" alt=""></image>
               <view class="zw-proli-tips">{{iitem.name}}</view>
               <view class="zw-proli-info" style="height:180rpx;">

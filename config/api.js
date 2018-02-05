@@ -1,4 +1,4 @@
-var NewApiRootUrl = 'http://192.168.168.125:8080/api/';
+var NewApiRootUrl = 'http://localhost:8080/api/';
 
 module.exports = {
     IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口

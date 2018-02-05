@@ -1,10 +1,7 @@
-//index.js
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 //获取应用实例
 const app = getApp()
-//var app = getApp();
-
 Page({
   data: {
     /** 
@@ -22,17 +19,12 @@ Page({
     scrollTop: 0,
     floorstatus: false,
 
-    newGoods: [],
     hotGoods: [],
-    topics: [],
-    brands: [],
-    floorGoods: [],
     banner: [],
-    channel: [],
 
-
+    groupAd:[],
     navList: [],
-    goodsList: [],
+    groupGoods: [],
     id: 0,
     currentCategory: {},
     scrollLeft: 0,
@@ -52,14 +44,6 @@ Page({
       url: activityUrl
     });
   },
-
-  //事件处理函数
-  bindViewTap: function () {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-
-  },
   onLoad: function () {
     /** 
      * 获取系统信息 
@@ -74,7 +58,10 @@ Page({
       }
     });
 
-    if (app.globalData.userInfo) {
+    // 获得首页展示的数据
+    that.getIndexData();
+
+    /**if (app.globalData.userInfo) {
       that.getIndexData();
       // 页面初始化 options为页面跳转所带来的参数
       that.setData({
@@ -112,15 +99,7 @@ Page({
       end_time: '2018-02-03'
     })
     countdown(that);
-  },
-
-  getUserInfo: function (e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    **/
   },
   /**首页轮播数据 */
   getIndexData: function () {
@@ -128,17 +107,14 @@ Page({
     util.request(api.IndexUrl).then(function (res) {
       if (res.errno === 0) {
         that.setData({
-          newGoods: res.data.newGoodsList,
           hotGoods: res.data.hotGoodsList,
-          topics: res.data.topicList,
-          brand: res.data.brandList,
-          floorGoods: res.data.categoryList,
           banner: res.data.banner,
-          channel: res.data.channel
+          navList: res.data.categoryList,
+          groupGoods: res.data.groupGoodsList,
+          groupAd: res.data.groupAd
         });
       }
     });
-    console.log("newGood" + that.data.newGoods)
   },
   //底部导航，跳到顶部
   goTop: function (e) {
