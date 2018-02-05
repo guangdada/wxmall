@@ -19,7 +19,6 @@ Page({
     scrollTop: 0,
     floorstatus: false,
 
-    showIndex:1,
     hotGoods: [],
     banner: [],
     goodsList:[],
@@ -72,7 +71,8 @@ Page({
           banner: res.data.banner,
           navList: res.data.categoryList,
           groupGoods: res.data.groupGoodsList,
-          groupAd: res.data.groupAd
+          groupAd: res.data.groupAd,
+          id: res.data.categoryList[0].id
         });
       }
     });
