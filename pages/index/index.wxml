@@ -1,15 +1,20 @@
 <!--index.wxml-->
 <view>
-  <view class="list-tab flexR" >
-    <scroll-view scroll-x wx:for="{{navList}}" wx:key="{{item.id}}" class="{{id == item.id ? 'checked-item' : ''}}" data-id="{{item.id}}" data-index="{{index}}"  style="background-color:#f7f7f7;padding:8rpx 0;" catchtap='toggleView'>{{item.name}}</scroll-view>
-  </view>
+   <view class="cate-nav">
+    <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
+      <view wx:for="{{navList}}" class="item {{ id == item.id ? 'active' : ''}}" data-id="{{item.id}}"  data-index="{{index}}" catchtap='toggleView'>
+        <view class="name">{{item.name}}</view>
+      </view>
+    </scroll-view>
+  </view> 
+  
   <!--列表展示  -->
   <swiper bindchange="toggleSwiper" current='{{currentIndex}}' style="height:{{winHeight}}px;">
     <!--精品团  -->
     <swiper-item>
-      <view class="section swiper-container">
+      <view class="section swiper-container" wx:if="{{banner}}">
         <swiper indicator-dots='{{true}}' indicator-color="white" indicator-active-color="orange" autoplay='{{true}}' interval="{{4000}}" duration='{{300}}' style="height:360rpx;">
-          <block wx:for="{{banner}}"  wx:key="{{item.id}}">
+          <block wx:for="{{banner}}" wx:key="{{item.id}}">
             <swiper-item data-activity-id="{{banner.link_id}}" data-activity-type="{{banner.type}}" data-activity-url="{{item.link}}" bindtap="navigateToProduct">
               <image mode="aspectFill" src="{{item.image_url}}" class="swiperPicture"></image>
             </swiper-item>
@@ -17,8 +22,8 @@
         </swiper>
       </view>
 
-    <!--限时团购-->
-      <view class='section' style="clear:both;">
+      <!--限时团购-->
+      <view class='section' style="clear:both;" wx:if="{{groupGoods}}">
         <view class="layort-h">
           <view class="zw-title" style="height:80rpx;top:20rpx;position:relative;">
             <text>限时团购</text>
@@ -67,7 +72,7 @@
               </view>
             </view>
           </view>
-          
+
         </view>
       </view>
     </swiper-item>
@@ -86,7 +91,7 @@
             <text>驿站优选</text>
           </view>
           <view class="zw-proul2">
-            <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="iitem.id"  wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
+            <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
               <image src="{{iitem.list_pic_url}}" alt=""></image>
               <view class="zw-proli-tips">{{iitem.name}}</view>
               <view class="zw-proli-info">
@@ -117,7 +122,7 @@
             <text>业主推荐</text>
           </view>
           <view class="zw-proul2">
-            <view class="zw-proli2" data-activity-id="iitem.id"  wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" bindtap="navigateToProduct" data-activity-type="3">
+            <view class="zw-proli2" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" bindtap="navigateToProduct" data-activity-type="3">
               <image src="{{iitem.list_pic_url}}" alt=""></image>
               <view class="zw-proli-tips">{{iitem.name}}</view>
               <view class="zw-proli-info">
@@ -150,7 +155,7 @@
             <text>邻居二手</text>
           </view>
           <view class="zw-proul2">
-            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id"  wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" data-activity-type="4">
+            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" data-activity-type="4">
               <image src="{{iitem.list_pic_url}}" alt=""></image>
               <view class="zw-proli-tips">{{iitem.name}}</view>
               <view class="zw-proli-info">

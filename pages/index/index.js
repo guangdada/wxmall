@@ -23,9 +23,9 @@ Page({
     banner: [],
     goodsList:[],
     groupAd:[],
-    navList: [],
+    navList: [{ id:1, name: "今拼团" }, { id: 2, name: "今f拼团" }, { id: 3, name: "今f拼团" }, { id: 4, name: "今f拼团" }, { id: 5, name: "今f拼团" }, { id: 6, name: "今f拼团" }, { id: 7, name: "今f拼团" }, { id: 8, name: "今f拼团" }],
     groupGoods: [],
-    id: 0,
+    id: 1,
     currentCategory: {},
     scrollLeft: 0,
     scrollTop: 0,
@@ -144,14 +144,22 @@ Page({
     }
     let that = this;
     let currentIndex = that.data;
-    currentIndex = event.target.dataset.index;
+    currentIndex = event.currentTarget.dataset.index;
     that.setData({
-      currentIndex
-    })
-    that.setData({
+      currentIndex,
       id: event.currentTarget.dataset.id
-    });
-
+    })
+    var clientX = event.detail.x;
+    var currentTarget = event.currentTarget;
+    if (clientX < 60) {
+      that.setData({
+        scrollLeft: currentTarget.offsetLeft - 60
+      });
+    } else if (clientX > 330) {
+      that.setData({
+        scrollLeft: currentTarget.offsetLeft
+      });
+    }
     that.getCategoryInfo();
   },
 

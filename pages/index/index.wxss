@@ -109,7 +109,7 @@
   line-height: 75rpx;
   padding: 0 28rpx;
   /* background-color: #fff; */
-  background-color:#f3f3f3;
+  background-color: #f3f3f3;
 }
 
 .zw-proul2 {
@@ -334,47 +334,6 @@ abbr, body, fieldset, html, iframe, image {
   overflow: auto;
 }
 
-.swiper-box view {
-  /*  text-align: center; */
-}
-
-.list-tab {
-  width: 100%;
-  /*  height: 80rpx; *//*  border-bottom: 1px solid #eee; */
-  justify-content: space-around;
-  position: fixed;
-  top: -2rpx;
-}
-
-.flexR {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.flexC {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.list-tab view {
-  width: 260rpx;
-  font-size: 32rpx;
-  text-align: center;
-  line-height: 64rpx;
-}
-
-.list-tab .checked-item {
-  border-bottom: 4rpx solid #239fff;
-  color: #239fff;
-  font-weight: 600;
-  line-height: 60rpx;
-}
-
 page view {
   box-sizing: border-box;
 }
@@ -391,4 +350,42 @@ swiper {
 
 .list-tab-bgcolor {
   background-color: #f7f7f7;
+}
+
+.cate-nav .item {
+  display: inline-block;
+  height: 84rpx;
+  min-width: 130rpx;
+  padding: 0 15rpx;
+}
+
+.cate-nav .item .name {
+  display: block;
+  height: 84rpx;
+  padding: 0 20rpx;
+  line-height: 84rpx;
+  color: #333;
+  font-size: 30rpx;
+  width: auto;
+}
+
+.cate-nav .item.active .name {
+  /* color:#ab2b2b; */
+  color: #239fff;
+  border-bottom: 2px solid #239fff;
+}
+
+.cate-nav-body {
+  height: 84rpx;
+  white-space: nowrap;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.15);
+  overflow: hidden;
+}
+
+.cate-nav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
 }
