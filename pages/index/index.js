@@ -9,27 +9,22 @@ Page({
     */
     winWidth: 0,
     winHeight: 0,
-    nowRole: 0,
     currentIndex: 0,
     // tab切换  
     currentTab: 0,
-    activeNav: 'recommend',//激活条目
-    userInfo: {},
-    hasUserInfo: false,
     scrollTop: 0,
+    scrollLeft: 0,
+    scrollHeight: 0,
     floorstatus: false,
 
     hotGoods: [],
     banner: [],
-    goodsList:[],
+    goodsList:{}, // 保存每个类别的商品数据
     groupAd:[],
     navList: [],
     groupGoods: [],
     id: 1,
     currentCategory: {},
-    scrollLeft: 0,
-    scrollTop: 0,
-    scrollHeight: 0,
     page: 1,
     size: 10000
   },
@@ -132,11 +127,10 @@ Page({
     util.request(api.GoodsList, { categoryId: that.data.id, page: that.data.page, size: that.data.size })
       .then(function (res) {
         that.setData({
-          goodsList: res.data.goodsList,
+          ["goodsList." + that.data.id] : res.data.goodsList,
         });
       });
   },
-
   //toggleView
   toggleView: function (event) {
     console.log("toggleView id:" + event.currentTarget.dataset.id)
@@ -162,16 +156,20 @@ Page({
       });
     }
     that.getCategoryInfo();
+    //that.toggleData(event.currentTarget.dataset.id);
   },
-
   //swiper切换
   toggleSwiper: function (event) {
     let that = this;
-    let nowRole = that.data;
-    nowRole = event.detail.current;
+    let currentTab = that.data;
+    currentTab = event.detail.current;
+    var id = that.data.navList[currentTab].id;
+
     that.setData({
-      nowRole
+      currentTab,
+      id:id
     })
+    that.getCategoryInfo();
   },
 
   //下拉刷新
