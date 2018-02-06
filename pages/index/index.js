@@ -31,10 +31,7 @@ Page({
 
   //产品详情点击处理事件
   navigateToProduct(event) {
-    var activityId = event.currentTarget.dataset.activityId;
     var activityUrl = event.currentTarget.dataset.activityUrl;
-    console.log("activityId:" + activityId)
-    /*  var activityUrl = "/pages/product/productDetail/productDetail?id=" + activityId + '&activityType=' + activityType; */
     wx.navigateTo({
       url: activityUrl
     });
