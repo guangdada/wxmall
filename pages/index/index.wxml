@@ -2,7 +2,7 @@
 <view>
    <view class="cate-nav">
     <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
-      <view wx:for="{{navList}}" class="item {{ id == item.id ? 'active' : ''}}" data-id="{{item.id}}"  data-index="{{index}}" catchtap='toggleView'>
+      <view wx:for="{{navList}}" class="item {{ nowRole == index ? 'active' : ''}}" data-id="{{item.id}}"  data-index="{{index}}" catchtap='toggleView'>
         <view class="name">{{item.name}}</view>
       </view>
     </scroll-view>

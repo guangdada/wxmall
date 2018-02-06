@@ -23,7 +23,7 @@ Page({
     banner: [],
     goodsList:[],
     groupAd:[],
-    navList: [{ id:1, name: "今拼团" }, { id: 2, name: "今f拼团" }, { id: 3, name: "今f拼团" }, { id: 4, name: "今f拼团" }, { id: 5, name: "今f拼团" }, { id: 6, name: "今f拼团" }, { id: 7, name: "今f拼团" }, { id: 8, name: "今f拼团" }],
+    navList: [],
     groupGoods: [],
     id: 1,
     currentCategory: {},
@@ -84,7 +84,8 @@ Page({
     })
   },
   scroll: function (e) {
-    if (e.detail.scrollTop > 300) {
+    console.log("scroll:" + e.detail.scrollTop)
+    if (e.detail.scrollTop > 100) {
       this.setData({
         floorstatus: true
       });
@@ -161,6 +162,16 @@ Page({
       });
     }
     that.getCategoryInfo();
+  },
+
+  //swiper切换
+  toggleSwiper: function (event) {
+    let that = this;
+    let nowRole = that.data;
+    nowRole = event.detail.current;
+    that.setData({
+      nowRole
+    })
   },
 
   //下拉刷新
