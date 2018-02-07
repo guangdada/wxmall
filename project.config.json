@@ -10,7 +10,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "1.5.4",
 	"appid": "wx8932382efdd56d5a",
-	"projectname": "ikoori-mall",
+	"projectname": "wxmall",
 	"condition": {
 		"search": {
 			"current": -1,

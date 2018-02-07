@@ -1,6 +1,6 @@
 // pages/product/productDetail/productDetail.js
-const util = require('../../../utils/util.js');
-const api = require('../../../config/api.js');
+const util = require('../../utils/util.js');
+const api = require('../../config/api.js');
 Page({
 
   /**
@@ -547,7 +547,6 @@ Page({
     console.log("id:" + options.id)
     this.setData({
       id: parseInt(options.id)
-      // id: 1181000
     });
     var that = this;
     this.getGoodsInfo();

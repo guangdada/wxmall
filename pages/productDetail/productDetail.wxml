@@ -30,40 +30,29 @@
       </view>
     </view>
 
-    <view class="dt-section-2">
-      <view class="m-listItem m-li-noborder">
-        <view class="left">
-          <text class="txt">服务：</text>
-        </view>
-        <view class="middle">
-          <view class="m-serversEntry">
-            <view class="mse-wrap">
-              <view class="item">保价服务</view>
-              <view class="item">100%正品保障</view>
-            </view>
-            <view class="mse-wrap">
-              <view class="item">59元包邮</view>
-              <view class="item">七天无理由退换</view>
-            </view>
-          </view>
-        </view>
-        <view class="right">
-          <i class="icon ion-ios-arrow-right"></i>
-        </view>
-      </view>
-    </view>
-
     <view class="dt-section-2 de-content">
       <view class="deitalInfos">
         <view class="m-attrCon">
           <view class="attrList">
             <view class="tt">商品参数</view>
             <view class="item">
-              <view class="left">货号</view>
+              <view class="left">名称</view>
               <view class="right">
                 <view class="con">A712357085</view>
               </view>
-              <view class="left">材料</view>
+              <view class="left">品牌</view>
+              <view class="right">
+                <view class="con">xxxxxx</view>
+              </view>
+              <view class="left">产地</view>
+              <view class="right">
+                <view class="con">xxxxxx</view>
+              </view>
+              <view class="left">包装方式</view>
+              <view class="right">
+                <view class="con">xxxxxx</view>
+              </view>
+              <view class="left">包装规格</view>
               <view class="right">
                 <view class="con">xxxxxx</view>
               </view>
@@ -121,10 +110,10 @@
       </view>
     </view>
     <view class="footer" wx:if="{{chooseType=='buyAdd'}}">
-      <button  bindtap="navigateToCart">确定</button>
+      <button bindtap="navigateToCart">确定</button>
     </view>
-     <view class="footer" wx:if="{{chooseType=='buyNow'}}">
-      <button  bindtap="navigateToSettlement">确定</button>
+    <view class="footer" wx:if="{{chooseType=='buyNow'}}">
+      <button bindtap="navigateToSettlement">确定</button>
     </view>
   </view>
 </view>

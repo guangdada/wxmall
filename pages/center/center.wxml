@@ -105,7 +105,13 @@
         <image src="/images/code.png" class="list-icon" style="width:40.18rpx;height:40.84rpx;"></image>
       </view>
       <view class="list-text">推荐码</view>
-      <view class="arrow-wrap">dfgdf</view>
+      
+      <view class="arrow-wrap">dfgdf
+      <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+      <view class="arrow-wrap">
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
     </view>
     <view class="list-item" hover-class="none" data-tip="2">
       <view class="list-icon-wrap">
