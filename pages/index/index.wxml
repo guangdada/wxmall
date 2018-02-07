@@ -34,7 +34,7 @@
                 <text>限时团购</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{groupGoods}}" wx:for-item="iitem" wx:for-index="iindex">
+                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{groupGoods}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.item_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info">
@@ -61,7 +61,7 @@
                 <text class="title-item">精品秒杀</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="iitem.id" data-activity-type="1" wx:for="{{hotGoods}}" wx:for-item="iitem" wx:for-index="iindex">
+                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{hotGoods}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.list_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info" style="height:180rpx;">
@@ -96,7 +96,7 @@
                 <text>{{item.name}}</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="iitem.id" wx:for="{{goodsList[item.id]}}" wx:for-item="iitem" wx:for-index="iindex">
+                <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="{{iitem.id}}" wx:for="{{goodsList[item.id]}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.list_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info">
@@ -114,103 +114,6 @@
         </block>
       </scroll-view>
     </swiper-item>
-
-    <!--驿站优选  -->
-    <!-- <swiper-item>
-      <view class="section swiper-container">
-        <view class="zw-banner">
-          <image style="width:750rpx; height:376rpx;" src="/images/c2.jpg" alt=""></image>
-        </view>
-      </view>
-
-      <view class='section' style="clear:both;">
-        <view class="layort-h">
-          <view class="zw-title">
-            <text>驿站优选</text>
-          </view>
-          <view class="zw-proul2">
-            <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex">
-              <image src="{{iitem.list_pic_url}}" alt=""></image>
-              <view class="zw-proli-tips">{{iitem.name}}</view>
-              <view class="zw-proli-info">
-                <view class="price-wrap">
-                  ￥
-                  <text class="price">{{iitem.retail_price}}</text>
-                </view>
-                <view class="buy-time">预计2018-01-26日后到货</view>
-                <view>现在可下单</view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </swiper-item> -->
-
-    <!--业主推荐  -->
-    <!-- <swiper-item>
-      <view class="section swiper-container">
-        <view class="zw-banner">
-          <image style="width:750rpx; height:376rpx;" src="/images/c2.jpg" alt=""></image>
-        </view>
-      </view>
-
-      <view class='section' style="clear:both;">
-        <view class="layort-h">
-          <view class="zw-title">
-            <text>业主推荐</text>
-          </view>
-          <view class="zw-proul2">
-            <view class="zw-proli2" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" bindtap="navigateToProduct" data-activity-type="3">
-              <image src="{{iitem.list_pic_url}}" alt=""></image>
-              <view class="zw-proli-tips">{{iitem.name}}</view>
-              <view class="zw-proli-info">
-                <view class="price-wrap">
-                  ￥
-                  <text class="price">{{iitem.retail_price}}</text>
-                </view>
-                <view class="buy-time">
-                  质地柔软，口感酸甜，富含丰富维C
-                </view>
-                <view class="send-time">销售数量：23</view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </swiper-item> -->
-
-    <!--邻居二手  -->
-    <!-- <swiper-item>
-      <view class="section swiper-container">
-        <view class="zw-banner">
-          <image style="width:750rpx; height:376rpx;" src="/images/c2.jpg" alt=""></image>
-        </view>
-      </view>
-
-      <view class='section' style="clear:both;">
-        <view class="layort-h">
-          <view class="zw-title">
-            <text>邻居二手</text>
-          </view>
-          <view class="zw-proul2">
-            <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="iitem.id" wx:for="{{goodsList}}" wx:for-item="iitem" wx:for-index="iindex" data-activity-type="4">
-              <image src="{{iitem.list_pic_url}}" alt=""></image>
-              <view class="zw-proli-tips">{{iitem.name}}</view>
-              <view class="zw-proli-info">
-                <view class="price-wrap">
-                  ￥
-                  <text class="price">{{iitem.retail_price}}</text>
-                </view>
-                <view class="buy-time">
-                  2010年 | 9.0公里 | 自动
-                </view>
-                <view class="send-time">新旧程度：八成新</view>
-              </view>
-            </view>
-          </view>
-        </view>
-      </view>
-    </swiper-item> -->
   </swiper>
 </view>
 

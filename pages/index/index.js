@@ -32,8 +32,9 @@ Page({
   //产品详情点击处理事件
   navigateToProduct(event) {
     var activityUrl = event.currentTarget.dataset.activityUrl;
+    var activityId = event.currentTarget.dataset.activityId;
     wx.navigateTo({
-      url: activityUrl
+      url: activityUrl ? activityUrl : "/pages/productDetail/productDetail?id=" + activityId
     });
   },
   onLoad: function () {
@@ -76,7 +77,6 @@ Page({
     })
   },
   scroll: function (e) {
-    console.log("scroll:" + e.detail.scrollTop)
     if (e.detail.scrollTop > 100) {
       this.setData({
         floorstatus: true
