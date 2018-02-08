@@ -397,9 +397,3 @@ swiper {
   width: 110rpx;
   height: 110rpx;
 }
-
-.bottom-tip {
-  display: none;
-  text-align: center;
-  background-color: #fff;
-}

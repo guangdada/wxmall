@@ -170,8 +170,20 @@ Page({
   },
   lower:function(){
     this.setData({
-      showStatus:"block"
-    })
+      toast: {
+        toastClass: 'yatoast',
+        toastMessage: '哦，到底了'
+      }
+    });
+    setTimeout(() => {
+      this.setData({
+        toast: {
+          toastClass: '',
+          toastMessage: ''
+        }
+      });
+    }, 1000);
+    
   },
 
   //下拉刷新

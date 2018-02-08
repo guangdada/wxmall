@@ -1,4 +1,5 @@
 <!--index.wxml-->
+<view class="{{toast.toastClass}}">{{toast.toastMessage}}</view>
 <view>
   <view class="cate-nav">
     <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
@@ -25,7 +26,6 @@
               </block>
             </swiper>
           </view>
-
 
           <!--限时团购-->
           <view class='section' style="clear:both;" wx:if="{{groupGoods}}">
@@ -112,7 +112,7 @@
             </view>
           </view>
         </block>
-        <view class="bottom-tip" style='display:{{showStatus}}'>哦，到底了</view>
+      <!--   <view class="bottom-tip" style='display:{{showStatus}}'>哦，到底了</view> -->
       </scroll-view>
     </swiper-item>
   </swiper>

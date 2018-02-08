@@ -45,13 +45,6 @@
             <text class="red-dot">0</text>
           </navigator>
         </view>
-        <!-- <view class="item">
-          <navigator url="../orders/orders?t=unreceived">
-            <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon4.png" alt=""></image>
-            <text class="txt">待评价</text>
-            <text class="red-dot">0</text>
-          </navigator>
-        </view> -->
         <view class="item">
           <navigator url="../orders/orders?t=unreceived">
             <image class="menu-icon" src="http://img02.camel.com.cn/image/zwuc_icon5.png" alt=""></image>
@@ -100,18 +93,15 @@
         <image src="/images/accessory.png" class="list-arrow"></image>
       </view>
     </view>
-    <view class="list-item" hover-class="none" data-tip="2">
+    <view class="list-item" hover-class="none" data-tip="2" bindtap='imgView'>
       <view class="list-icon-wrap">
         <image src="/images/code.png" class="list-icon" style="width:40.18rpx;height:40.84rpx;"></image>
       </view>
       <view class="list-text">推荐码</view>
-      
       <view class="arrow-wrap">dfgdf
-      <image src="/images/accessory.png" class="list-arrow"></image>
-      </view>
-      <view class="arrow-wrap">
         <image src="/images/accessory.png" class="list-arrow"></image>
       </view>
+
     </view>
     <view class="list-item" hover-class="none" data-tip="2">
       <view class="list-icon-wrap">
@@ -119,6 +109,22 @@
       </view>
       <view class="list-text">业务合作</view>
       <view class="arrow-wrap">15666558958</view>
+    </view>
+  </view>
+</view>
+
+<!--  二维码弹框视图  -->
+<view class="dialog {{ showCenterDialog ? 'dialog--show' : 'dialog_hidden' }}">
+  <view class="dialog__mask" />
+  <view class="dialog__container">
+    <!--  //此区域自定义视图  -->
+    <view class="flex_Center">
+      <view  class="close__pop" bindtap='onClickCancelCenterView'>
+        <text>关闭</text>
+      </view>
+      <view class="canvas__layer">
+        <canvas hidden="{{canvasHidden}}"  class="mycanvas"  canvas-id="mycanvas" />
+      </view>
     </view>
   </view>
 </view>
