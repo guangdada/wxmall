@@ -2,7 +2,7 @@
 <view>
   <view class="cate-nav">
     <scroll-view scroll-x="true" class="cate-nav-body" style="width: 750rpx;" scroll-left="{{scrollLeft}}">
-      <view wx:for="{{navList}}" class="item {{ currentTab == index  ? 'active' : ''}}" data-id="{{item.id}}" data-index="{{index}}" catchtap='toggleView'>
+      <view wx:for="{{navList}}" wx:key="{{item.id}}" class="item {{ currentTab == index  ? 'active' : ''}}" data-id="{{item.id}}" data-index="{{index}}" catchtap='toggleView'>
         <view class="name">{{item.name}}</view>
       </view>
     </scroll-view>
@@ -11,9 +11,9 @@
   <!--首页展示  -->
   <swiper bindchange="toggleSwiper" current='{{currentIndex}}' style="height:{{winHeight}}px;">
     <!--精品团  -->
-    <swiper-item wx:for="{{navList}}">
+    <swiper-item wx:for="{{navList}}" wx:key="{{item.id}}">
       <!--轮播图展示-->
-      <scroll-view class="page" scroll-y="true" bindscrolltolower="lower" style="height:100%" scroll-into-view="{{toView}}" upper-threshold="10" bindscroll="scroll" scroll-top="{{scrollTop}}">
+      <scroll-view class="page" scroll-y="true" bindscrolltolower="lower" style="height:100%" upper-threshold="10" bindscroll="scroll" scroll-top="{{scrollTop}}">
 
         <block wx:if="{{item.show_index == 1}}">
           <view class="section swiper-container" wx:if="{{banner}}">
@@ -34,7 +34,7 @@
                 <text>限时团购</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{groupGoods}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
+                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="{{iitem.goods_id}}" data-activity-type="1" wx:for="{{groupGoods}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.item_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info">
@@ -61,7 +61,7 @@
                 <text class="title-item">精品秒杀</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{hotGoods}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
+                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{hotGoods}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.list_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info" style="height:180rpx;">
@@ -96,7 +96,7 @@
                 <text>{{item.name}}</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="{{iitem.id}}" wx:for="{{goodsList[item.id]}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
+                <view class="zw-proli2" bindtap='navigateToProduct' data-activity-type="2" data-activity-id="{{iitem.id}}" wx:for="{{goodsList[item.id]}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
                   <image src="{{iitem.list_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info">
@@ -112,11 +112,12 @@
             </view>
           </view>
         </block>
+        <view class="bottom-tip" style='display:{{showStatus}}'>哦，到底了</view>
       </scroll-view>
     </swiper-item>
   </swiper>
 </view>
 
-<view style="position: absolute; bottom: 30rpx; right: 30rpx; width: 110rpx; height: 110rpx;" bindtap="goTop" wx:if="{{ floorstatus }}">
+<view class="go-top" bindtap="goTop" wx:if="{{ floorstatus }}">
   <image src="/images/to-top.png" style="position: absolute; width: 110rpx; height: 110rpx;"></image>
 </view>

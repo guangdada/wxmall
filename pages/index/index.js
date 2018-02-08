@@ -168,6 +168,11 @@ Page({
     })
     that.getCategoryInfo();
   },
+  lower:function(){
+    this.setData({
+      showStatus:"block"
+    })
+  },
 
   //下拉刷新
   onPullDownRefresh: function () {

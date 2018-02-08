@@ -54,15 +54,15 @@
   font-size: 36rpx;
   margin-bottom: 0.0500025rpx;
   border-bottom: 1px solid #d9d9d9;
-  padding-bottom:18rpx;
+  padding-bottom: 18rpx;
 }
 
 .m-detailBase .info .desc {
   font-size: 27rpx;
   line-height: 1;
   margin-top: 10rpx;
- /*  color: #7f7f7f; */
-  color:#b4282d;
+  /*  color: #7f7f7f; */
+  color: #b4282d;
   padding-top: 10rpx;
 }
 
@@ -625,19 +625,6 @@ address, cite, dfn, em, i, var {
   position: relative;
 }
 
-.adding-to-cart-popup-background .adding-to-cart-popup .section .specs .spec-btns button.selected::after {
-  content: '';
-  position: absolute;
-  width: 56rpx;
-  height: 40rpx;
-  bottom: 0;
-  right: 0;
-  box-sizing: border-box;
-  background-image: url(wedge.png);
-  background-size: 56rpx 40rpx;
-  border-radius: 0;
-}
-
 .section {
   margin: 23.4rpx 0;
   padding: 0 16.38rpx;
@@ -657,7 +644,6 @@ button, button::after {
   position: none;
   top: inherit;
   left: inherit;
-  border: none;
   -webkit-transform: none;
   transform: none;
   -webkit-transform-origin: none;
@@ -693,4 +679,26 @@ button {
   overflow: hidden;
   color: #000;
   background-color: #f8f8f8;
+}
+
+.spec-btns .value.selected {
+  border: 1px solid #b4282d;
+  color: #b4282d;
+}
+
+.cart-count {
+  display: inline-block;
+  height: 28rpx;
+  width: 28rpx;
+  z-index: 10;
+  position: relative;
+  top: -18rpx;
+  right: -16rpx;
+  background: #b4282d;
+  text-align: center;
+  font-size: 22rpx;
+  color: #fff;
+  line-height: 28rpx;
+  border-radius: 50%;
+  padding:3rpx 3rpx;
 }
