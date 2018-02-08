@@ -506,9 +506,9 @@ address, cite, dfn, em, i, var {
 }
 
 .adding-to-cart-popup-background .adding-to-cart-popup .section {
-  max-height: 400rpx;
+  /* max-height: 400rpx; */
   padding: 0;
-  overflow: auto;
+ /*  overflow: auto; */
 }
 
 .adding-to-cart-popup-background .adding-to-cart-popup .section .specs {
@@ -561,7 +561,7 @@ address, cite, dfn, em, i, var {
   font-weight: normal;
   color: #353535;
   font-size: 28rpx;
-  line-height: 42rpx;
+  line-height: 70rpx;
   display: inline-block;
 }
 

@@ -17,6 +17,7 @@ Page({
     brand: {},
     specificationList: [],
     productList: [],
+    
     relatedGoods: [],
     cartGoodsCount: 0,
     userHasCollect: 0,
@@ -41,9 +42,85 @@ Page({
   },
 
   navigateToSettlement() {
-    wx.navigateTo({
-      url: '/pages/settlement/settlement',
-    })
+    var that = this;
+    if (this.data.popDisplay != 'block') {
+      //打开规格选择窗口
+      this.setData({
+        popDisplay: 'block',
+      });
+      setTimeout(() => {
+        this.setData({
+          toast: {
+            toastClass: '',
+            toastMessage: ''
+          }
+        });
+      }, 2000);
+    } else {
+
+      //提示选择完整规格
+      if (!this.isCheckedAllSpec()) {
+        this.setData({
+          toast: {
+            toastClass: 'yatoast',
+            toastMessage: '请选择完整规格'
+          }
+        });
+        setTimeout(() => {
+          this.setData({
+            toast: {
+              toastClass: '',
+              toastMessage: ''
+            }
+          });
+        }, 2000);
+        return false;
+      }
+
+      //根据选中的规格，判断是否有对应的sku信息
+      let checkedProduct = this.getCheckedProductItem(this.getCheckedSpecKey());
+      if (!checkedProduct || checkedProduct.length <= 0) {
+        //找不到对应的product信息，提示没有库存
+        this.setData({
+          toast: {
+            toastClass: 'yatoast',
+            toastMessage: '没有库存'
+          }
+        });
+        setTimeout(() => {
+          this.setData({
+            toast: {
+              toastClass: '',
+              toastMessage: ''
+            }
+          });
+        }, 2000);
+        return false;
+      }
+
+      //验证库存
+      if (checkedProduct.goods_number < this.data.number) {
+        //找不到对应的product信息，提示没有库存
+        this.setData({
+          toast: {
+            toastClass: 'yatoast',
+            toastMessage: '没有库存'
+          }
+        });
+        setTimeout(() => {
+          this.setData({
+            toast: {
+              toastClass: '',
+              toastMessage: ''
+            }
+          });
+        }, 2000);
+        return false;
+      }
+      wx.navigateTo({
+        url: '/pages/settlement/settlement',
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

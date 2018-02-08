@@ -30,49 +30,51 @@ Page({
     })
   },
   onLoad() {
-    const requests = ['/balance', '/cart/indexCart',
-      '/users/addresses'
-    ]
-      .map(path => (
-        request({ path })
-          .then(response => response.data)
-          .catch(() => [])
-      ));
-    Promise.all(requests).then(([balance, carInfo, addressList]) => {
-      let address = [];
-      let cartList = [];
-      let buyNumber = 0;
-      let totalPay = 0;
-      let ok = 0;
-      addressList.forEach((item) => {
-        if (item.is_default) {
-          ok = 1;
-          address = item;
-        }
-      });
-      carInfo.forEach((item) => {
-        item.real_price = item.real_price.toFixed(2);
-        item.market_price = item.market_price.toFixed(2);
-        if (item.status) {
-          buyNumber += item.goods_number;
-          totalPay += item.goods_number * item.real_price;
-          cartList.push(item);
-        }
-      });
-      let freight = 0;
-      resource.getShipping(this.data.shop_id, address.city).then((res) => {
-        if (Number(res.statusCode) !== 200) {
-          ok = 1 && ok;
-        } else {
-          freight = res;
-          ok = 0 && ok;
-        }
-      });
-      totalPay = totalPay.toFixed(2);
-      freight = freight.toFixed(2);
-      var loading = false;
-      this.setData({ loading, address, ok, cartList, freight, totalPay });
-    });
+    var loading = false;
+    this.setData({ loading});
+    /*     const requests = ['/balance', '/cart/indexCart',
+          '/users/addresses'
+        ]
+          .map(path => (
+            request({ path })
+              .then(response => response.data)
+              .catch(() => [])
+          ));
+        Promise.all(requests).then(([balance, carInfo, addressList]) => {
+          let address = [];
+          let cartList = [];
+          let buyNumber = 0;
+          let totalPay = 0;
+          let ok = 0;
+          addressList.forEach((item) => {
+            if (item.is_default) {
+              ok = 1;
+              address = item;
+            }
+          });
+          carInfo.forEach((item) => {
+            item.real_price = item.real_price.toFixed(2);
+            item.market_price = item.market_price.toFixed(2);
+            if (item.status) {
+              buyNumber += item.goods_number;
+              totalPay += item.goods_number * item.real_price;
+              cartList.push(item);
+            }
+          });
+          let freight = 0;
+          resource.getShipping(this.data.shop_id, address.city).then((res) => {
+            if (Number(res.statusCode) !== 200) {
+              ok = 1 && ok;
+            } else {
+              freight = res;
+              ok = 0 && ok;
+            }
+          });
+          totalPay = totalPay.toFixed(2);
+          freight = freight.toFixed(2);
+          var loading = false;
+          this.setData({ loading, address, ok, cartList, freight, totalPay });
+        }); */
   },
   postOrder() {
     this.setData({ exec: true });
@@ -116,9 +118,6 @@ Page({
               console.log('fail');
             },
             'complete': function (res) {
-              // wx.navigateTo({
-              //   url: '../orders/orders?t=unpaid'
-              // });
               console.log('complete');
             }
           });
