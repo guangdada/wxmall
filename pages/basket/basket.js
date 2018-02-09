@@ -1,237 +1,281 @@
-// pages/basket/basket.js
+var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
+
 var app = getApp();
-import resource from '../../lib/resource';
 
 Page({
   data: {
-    loading: true,
-    cartList: [],
-    totalNumber: 0,
-    totalPrice: 0,
-    checkedStatus: true,
-    buyNumber: 0,
-    buyPrice: 0,
+    cartGoods: [],
+    cartTotal: {
+      "goodsCount": 0,
+      "goodsAmount": 0.00,
+      "checkedGoodsCount": 0,
+      "checkedGoodsAmount": 0.00
+    },
+    isEditCart: false,
+    checkedAllStatus: true,
+    editCartList: []
   },
-  onShow() {
-    const that = this;
-    resource.fetchCartIndex().then(res => {
-      var totalNumber = 0;
-      var totalPrice = 0;
-      var buyNumber = 0;
-      var buyPrice = 0;
-      res.data.forEach(item => {
-        // 保留两位小数点
-        item.real_price = item.real_price.toFixed(2);
-        item.market_price = item.market_price.toFixed(2);
-        if (!item.status) {
-          that.setData({ checkedStatus: false });
-        } else {
-          buyNumber += item.goods_number;
-          buyPrice += item.goods_number * item.real_price;
-        }
-        totalNumber += item.goods_number;
-        totalPrice += item.goods_number * item.real_price;
-        if (item.goods_number == item.stock_num) {
-          item.plus_class = "disabled";
-        } else {
-          item.plus_class = "";
-        }
-        if (item.goods_number == 1) {
-          item.decr_class = "disabled";
-        } else {
-          item.decr_class = "";
-        }
-      })
+  onLoad: function (options) {
+    // 页面初始化 options为页面跳转所带来的参数
+
+
+  },
+  onReady: function () {
+    // 页面渲染完成
+
+  },
+  onShow: function () {
+    // 页面显示
+    this.getCartList();
+  },
+  onHide: function () {
+    // 页面隐藏
+
+  },
+  onUnload: function () {
+    // 页面关闭
+
+  },
+  getCartList: function () {
+    let that = this;
+    util.request(api.CartList).then(function (res) {
+      if (res.errno === 0) {
+        console.log(res.data);
+        that.setData({
+          cartGoods: res.data.cartList,
+          cartTotal: res.data.cartTotal
+        });
+      }
+
       that.setData({
-        cartList: res.data,
-        loading: false,
-        totalNumber: totalNumber,
-        totalPrice: totalPrice.toFixed(2),
-        buyNumber: buyNumber,
-        buyPrice: buyPrice.toFixed(2)
+        checkedAllStatus: that.isCheckedAll()
+      });
+    });
+  },
+  isCheckedAll: function () {
+    //判断购物车商品已全选
+    return this.data.cartGoods.every(function (element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  },
+  checkedItem: function (event) {
+    let itemIndex = event.target.dataset.itemIndex;
+    let that = this;
+
+    if (!this.data.isEditCart) {
+      util.request(api.CartChecked, { productIds: that.data.cartGoods[itemIndex].product_id, isChecked: that.data.cartGoods[itemIndex].checked ? 0 : 1 }, 'POST').then(function (res) {
+        if (res.errno === 0) {
+          console.log(res.data);
+          that.setData({
+            cartGoods: res.data.cartList,
+            cartTotal: res.data.cartTotal
+          });
+        }
+
+        that.setData({
+          checkedAllStatus: that.isCheckedAll()
+        });
+      });
+    } else {
+      //编辑状态
+      let tmpCartData = this.data.cartGoods.map(function (element, index, array) {
+        if (index == itemIndex) {
+          element.checked = !element.checked;
+        }
+
+        return element;
       });
 
+      that.setData({
+        cartGoods: tmpCartData,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
+  },
+  getCheckedGoodsCount: function () {
+    let checkedGoodsCount = 0;
+    this.data.cartGoods.forEach(function (v) {
+      if (v.checked === true) {
+        checkedGoodsCount += v.number;
+      }
+    });
+    console.log(checkedGoodsCount);
+    return checkedGoodsCount;
+  },
+  checkedAll: function () {
+    let that = this;
+
+    if (!this.data.isEditCart) {
+      var productIds = this.data.cartGoods.map(function (v) {
+        return v.product_id;
+      });
+      util.request(api.CartChecked, { productIds: productIds.join(','), isChecked: that.isCheckedAll() ? 0 : 1 }, 'POST').then(function (res) {
+        if (res.errno === 0) {
+          console.log(res.data);
+          that.setData({
+            cartGoods: res.data.cartList,
+            cartTotal: res.data.cartTotal
+          });
+        }
+
+        that.setData({
+          checkedAllStatus: that.isCheckedAll()
+        });
+      });
+    } else {
+      //编辑状态
+      let checkedAllStatus = that.isCheckedAll();
+      let tmpCartData = this.data.cartGoods.map(function (v) {
+        v.checked = !checkedAllStatus;
+        return v;
+      });
+
+      that.setData({
+        cartGoods: tmpCartData,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
+
+  },
+  editCart: function () {
+    var that = this;
+    if (this.data.isEditCart) {
+      this.getCartList();
+      this.setData({
+        isEditCart: !this.data.isEditCart
+      });
+    } else {
+      //编辑状态
+      let tmpCartList = this.data.cartGoods.map(function (v) {
+        v.checked = false;
+        return v;
+      });
+      this.setData({
+        editCartList: this.data.cartGoods,
+        cartGoods: tmpCartList,
+        isEditCart: !this.data.isEditCart,
+        checkedAllStatus: that.isCheckedAll(),
+        'cartTotal.checkedGoodsCount': that.getCheckedGoodsCount()
+      });
+    }
+
+  },
+  updateCart: function (productId, goodsId, number, id) {
+    let that = this;
+
+    util.request(api.CartUpdate, {
+      productId: productId,
+      goodsId: goodsId,
+      number: number,
+      id: id
+    }, 'POST').then(function (res) {
+      if (res.errno === 0) {
+        console.log(res.data);
+        that.setData({
+          //cartGoods: res.data.cartList,
+          //cartTotal: res.data.cartTotal
+        });
+      }
+
+      that.setData({
+        checkedAllStatus: that.isCheckedAll()
+      });
+    });
+
+  },
+  cutNumber: function (event) {
+
+    let itemIndex = event.target.dataset.itemIndex;
+    let cartItem = this.data.cartGoods[itemIndex];
+    let number = (cartItem.number - 1 > 1) ? cartItem.number - 1 : 1;
+    cartItem.number = number;
+    this.setData({
+      cartGoods: this.data.cartGoods
+    });
+    this.updateCart(cartItem.product_id, cartItem.goods_id, number, cartItem.id);
+  },
+  addNumber: function (event) {
+    let itemIndex = event.target.dataset.itemIndex;
+    let cartItem = this.data.cartGoods[itemIndex];
+    let number = cartItem.number + 1;
+    cartItem.number = number;
+    this.setData({
+      cartGoods: this.data.cartGoods
+    });
+    this.updateCart(cartItem.product_id, cartItem.goods_id, number, cartItem.id);
+
+  },
+  checkoutOrder: function () {
+    //获取已选择的商品
+    let that = this;
+
+    var checkedGoods = this.data.cartGoods.filter(function (element, index, array) {
+      if (element.checked == true) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+
+    if (checkedGoods.length <= 0) {
+      return false;
+    }
+
+
+    wx.navigateTo({
+      url: '../settlement/settlement'
     })
   },
-  // 选择商品
-  selectProduct(event) {
-    var cartId = event.currentTarget.dataset.id;
-    var checkedStatus = event.currentTarget.dataset.checkedStatus;
-    var totalNumber = 0;
-    var totalPrice = 0;
-    var buyNumber = 0;
-    var buyPrice = 0;
-    var id = [];
-    checkedStatus = checkedStatus === true;
-    var changeStatus = true;
-    this.data.cartList.forEach(item => {
-      if (item.id == cartId || cartId == 0) {
-        if (item.status != !checkedStatus) {
-          id.push(item.id);
-        }
-        item.status = cartId == 0 ? !checkedStatus : !item.status;
+  deleteCart: function () {
+    //获取已选择的商品
+    let that = this;
 
-      }
-      if (!item.status) {
-        changeStatus = false;
+    let productIds = this.data.cartGoods.filter(function (element, index, array) {
+      if (element.checked == true) {
+        return true;
       } else {
-        buyNumber += item.goods_number;
-        buyPrice += item.goods_number * item.real_price;
+        return false;
       }
-      totalNumber += item.goods_number;
-      totalPrice += item.goods_number * item.real_price;
     });
-    resource.updCartStatus(id.join()).then(res => { });
-    changeStatus = cartId == 0 ? !checkedStatus : changeStatus;
-    this.setData({
-      cartList: this.data.cartList,
-      checkedStatus: changeStatus,
-      totalNumber: totalNumber,
-      totalPrice: totalPrice.toFixed(2),
-      buyNumber: buyNumber,
-      buyPrice: buyPrice.toFixed(2)
-    });
-  },
-  // 改变商品数量
-  changeNumber(event) {
-    var cartId = event.currentTarget.dataset.id;
-    var optType = event.currentTarget.dataset.type;
-    var totalNumber = 0;
-    var totalPrice = 0;
-    var buyNumber = 0;
-    var buyPrice = 0;
-    this.data.cartList.forEach(item => {
-      if (item.id == cartId) {
-        if (optType == 'plus') {
-          if (item.stock_num == item.goods_number) {
-            this.setData({
-              toast: {
-                toastClass: 'yatoast',
-                toastMessage: '该宝贝不能购买更多哦'
-              }
-            });
-            setTimeout(() => {
-              this.setData({
-                toast: {
-                  toastClass: '',
-                  toastMessage: ''
-                }
-              });
-            }, 2000);
-          } else {
-            item.goods_number++;
-            resource.updCartNumber(cartId, optType);
-          }
 
-        } else {
-
-          if (item.goods_number <= 1) {
-            this.setData({
-              toast: {
-                toastClass: 'yatoast',
-                toastMessage: '亲，不能再减少了哦'
-              }
-            });
-            setTimeout(() => {
-              this.setData({
-                toast: {
-                  toastClass: '',
-                  toastMessage: ''
-                }
-              });
-            }, 2000);
-          } else {
-            item.goods_number--;
-            resource.updCartNumber(cartId, optType);
-          }
-        }
-        if (item.goods_number == item.stock_num) {
-          item.plus_class = "disabled";
-        } else {
-          item.plus_class = "";
-        }
-        if (item.goods_number == 1) {
-          item.decr_class = "disabled";
-        } else {
-          item.decr_class = "";
-        }
-      }
-      if (!item.status) {
-
-      } else {
-        buyNumber += item.goods_number;
-        buyPrice += item.goods_number * item.real_price;
-      }
-      totalNumber += item.goods_number;
-      totalPrice += item.goods_number * item.real_price;
-    });
-    this.setData({
-      cartList: this.data.cartList,
-      totalNumber: totalNumber,
-      totalPrice: totalPrice.toFixed(2),
-      buyNumber: buyNumber,
-      buyPrice: buyPrice.toFixed(2)
-    });
-  },
-  // 去结算页面
-  toSettlement() {
-    if (this.data.buyNumber == 0) {
-      resource.showTips(this, '你还未勾选商品'); return;
+    if (productIds.length <= 0) {
+      return false;
     }
-    wx.navigateTo({
-      url: '../settlement/settlement',
-    });
-  },
-  // 去除购物车物品
-  delProduct(event) {
-    wx.showModal({
-      content: '你确定在购物车中删除该商品',
-      showCancel: true,
-      success: (res) => {
-        if (res.confirm == 0) {
-          return;
-        }
-        var id = event.currentTarget.dataset.id;
-        var cartList = this.data.cartList;
-        var totalNumber = 0;
-        var totalPrice = 0;
-        var buyNumber = 0;
-        var buyPrice = 0;
-        var delKey = 0;
-        cartList.forEach((item, key) => {
-          if (item.id == id) {
-            delKey = key;
-          } else {
-            if (!item.status) {
 
-            } else {
-              buyNumber += item.goods_number;
-              buyPrice += item.goods_number * item.real_price;
-            }
-            totalNumber += item.goods_number;
-            totalPrice += item.goods_number * item.real_price;
-          }
-        });
-        cartList.splice(delKey, 1);
-        resource.delCartProduct(id).then(res => {
-          console.log(res);
-          if (res.statusCode == 200) {
-            this.setData({
-              cartList: cartList,
-              totalNumber: totalNumber,
-              totalPrice: totalPrice.toFixed(2),
-              buyNumber: buyNumber,
-              buyPrice: buyPrice.toFixed(2)
-            });
-          }
-        });
+    productIds = productIds.map(function (element, index, array) {
+      if (element.checked == true) {
+        return element.product_id;
       }
     });
-  },
-  //购物车没有商品时，点击随便逛逛，回到首页
-  navigateTo() {
-    wx.switchTab({
-      url: '/pages/index/index'
+
+
+    util.request(api.CartDelete, {
+      productIds: productIds.join(',')
+    }, 'POST').then(function (res) {
+      if (res.errno === 0) {
+        console.log(res.data);
+        let cartList = res.data.cartList.map(v => {
+          console.log(v);
+          v.checked = false;
+          return v;
+        });
+
+        that.setData({
+          cartGoods: cartList,
+          cartTotal: res.data.cartTotal
+        });
+      }
+
+      that.setData({
+        checkedAllStatus: that.isCheckedAll()
+      });
     });
   }
-});
+})
