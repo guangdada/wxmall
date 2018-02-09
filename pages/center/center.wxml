@@ -14,7 +14,7 @@
       </view>
     </view>
   </view>
-
+  
   <view class="m-uc-wrap">
     <navigator url='../orders/orders?t=all'>
       <view class="m-uc-wraptit" bindtap='navigatorOrders'>
