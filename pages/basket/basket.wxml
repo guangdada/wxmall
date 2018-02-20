@@ -1,4 +1,14 @@
 <view class="container">
+  <block wx:if="{{!isLogin}}">
+      <view class="no-cart">
+        <view class="c">
+          <image src="../../images/zw_iconb4.png" />
+          <text>您还未登录</text>
+          <button type='warn' size='mini' bindtap='toLogin'>去登录</button>
+        </view>
+      </view>
+  </block>
+  <block wx:if="{{isLogin}}">
   <view class="no-cart" wx:if="{{cartGoods.length <= 0}}">
     <view class="c">
       <image src="../../images/zw_iconb4.png" />
@@ -43,4 +53,5 @@
       <view class="checkout" bindtap="checkoutOrder" wx:if="{{!isEditCart}}">下单</view>
     </view>
   </view>
+  </block>
 </view>

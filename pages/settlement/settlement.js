@@ -46,7 +46,7 @@ Page({
     let that = this;
     util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
       if (res.errno === 0) {
-        console.log(res.data);
+        console.log("查询到购物车选中的商品");
         that.setData({
           checkedGoodsList: res.data.checkedGoodsList,
           checkedAddress: res.data.checkedAddress,
@@ -64,12 +64,12 @@ Page({
   },
   selectAddress() {
     wx.navigateTo({
-      url: '/pages/shopping/address/address',
+      url: '/pages/address/address',
     })
   },
   addAddress() {
     wx.navigateTo({
-      url: '/pages/shopping/addressAdd/addressAdd',
+      url: '/pages/addressAdd/addressAdd',
     })
   },
   onReady: function () {
@@ -93,10 +93,10 @@ Page({
 
   },
   submitOrder: function () {
-    /* if (this.data.addressId <= 0) {
+    if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
-    } */
+    }
     util.request(api.OrderSubmit, { addressId: this.data.addressId, couponId: this.data.couponId }, 'POST').then(res => {
       if (res.errno === 0) {
         const orderId = res.data.orderInfo.id;

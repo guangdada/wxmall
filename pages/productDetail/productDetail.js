@@ -2,6 +2,7 @@
 const util = require('../../utils/util.js');
 const api = require('../../config/api.js');
 var WxParse = require('../../lib/wxParse/wxParse.js');
+var app = getApp();
 Page({
 
   /**
@@ -132,14 +133,17 @@ Page({
     });
     var that = this;
     this.getGoodsInfo();
-    util.request(api.CartGoodsCount).then(function (res) {
-      if (res.errno === 0) {
-        that.setData({
-          cartGoodsCount: res.data.cartTotal.goodsCount
-        });
+    // 已经登录了才查询购物车数量
+    if(app.hasToken()){
+      util.request(api.CartGoodsCount).then(function (res) {
+        if (res.errno === 0) {
+          that.setData({
+            cartGoodsCount: res.data.cartTotal.goodsCount
+          });
 
-      }
-    });
+        }
+      });
+    }
   },
   /**商品详情 */
   getGoodsInfo: function () {
@@ -175,6 +179,24 @@ Page({
   },
   /**选择规格 */
   switchAttrPop: function (e) {
+    if (!app.hasToken()) {
+      wx.showModal({
+        title: '登录提示',
+        content: '需要先登录，才可以购买哦',
+        success: function (res) {
+          if (res.confirm) {
+            wx.switchTab({
+              url: '/pages/center/center',
+            })
+            console.log('用户确定')
+          } else if (res.cancel) {
+            console.log('用户取消')
+          }
+        }
+      })
+      return;
+    }
+
     var type = e.currentTarget.dataset.type;
     this.setData({
       chooseType: type

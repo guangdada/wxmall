@@ -14,20 +14,23 @@ Page({
     },
     isEditCart: false,
     checkedAllStatus: true,
-    editCartList: []
+    editCartList: [],
+    isLogin:false // 是否已经登录了
   },
   onLoad: function (options) {
-    // 页面初始化 options为页面跳转所带来的参数
-
-
+    this.setLogin();
   },
   onReady: function () {
     // 页面渲染完成
-
+    console.log(this.data.isLogin);
   },
   onShow: function () {
     // 页面显示
-    this.getCartList();
+    this.setLogin();
+    if(this.data.isLogin){
+      console.log("查询购物车数据");
+      this.getCartList();
+    }
   },
   onHide: function () {
     // 页面隐藏
@@ -37,11 +40,21 @@ Page({
     // 页面关闭
 
   },
+  toLogin:function(){
+    // 跳转到登录页面
+    wx.switchTab({
+      url: '/pages/center/center',
+    })
+  },
+  setLogin:function(){
+    this.setData({
+      isLogin: app.hasToken()
+    });
+  },
   getCartList: function () {
     let that = this;
     util.request(api.CartList).then(function (res) {
       if (res.errno === 0) {
-        console.log(res.data);
         that.setData({
           cartGoods: res.data.cartList,
           cartTotal: res.data.cartTotal
@@ -51,6 +64,8 @@ Page({
       that.setData({
         checkedAllStatus: that.isCheckedAll()
       });
+    }).catch((res) =>{
+      this.setLogin();
     });
   },
   isCheckedAll: function () {

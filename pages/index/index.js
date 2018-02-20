@@ -33,6 +33,8 @@ Page({
   navigateToProduct(event) {
     var activityUrl = event.currentTarget.dataset.activityUrl;
     var activityId = event.currentTarget.dataset.activityId;
+    console.log("activityUrl:" + activityUrl);
+    console.log("activityId:" + activityId);
     wx.navigateTo({
       url: activityUrl ? activityUrl : "/pages/productDetail/productDetail?id=" + activityId
     });

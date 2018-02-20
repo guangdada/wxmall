@@ -35,5 +35,11 @@ App({
   },
   globalData: {
     userInfo: null
+  },
+  hasToken:function(){
+    // 判断是否已经登录
+    console.log("hasToken?");
+    let token = wx.getStorageSync("token");
+    return token ? true:false
   }
 })

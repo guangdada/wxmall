@@ -34,43 +34,24 @@ function request(url, data = {}, method = "GET") {
         console.log("success");
 
         if (res.statusCode == 200) {
-
           if (res.data.errno == 401) {
-            //需要登录后才可以操作
-
-            let code = null;
-            return login().then((res) => {
-              code = res.code;
-              return getUserInfo();
-            }).then((userInfo) => {
-              //登录远程服务器
-              request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
-                if (res.errno === 0) {
-                  //存储用户信息
-                  wx.setStorageSync('userInfo', res.data.userInfo);
-                  wx.setStorageSync('token', res.data.token);
-
-                  resolve(res);
-                } else {
-                  reject(res);
-                }
-              }).catch((err) => {
-                reject(err);
-              });
-            }).catch((err) => {
-              reject(err);
-            })
+            //处理token过期
+            console.log("返回了401");
+            wx.removeStorageSync("token");
+            wx.removeStorageSync("userInfo");
+            reject(res.data.errmsg);
           } else {
+            console.log("返回成功");
             resolve(res.data);
           }
         } else {
+          console.log("返回失败" + res.statusCode);
           reject(res.errMsg);
         }
-
       },
       fail: function (err) {
+        console.log("请求失败");
         reject(err)
-        console.log("failed")
       }
     })
   });
@@ -129,6 +110,21 @@ function getUserInfo() {
   });
 }
 
+function getUserInfo2(code) {
+  return new Promise(function (resolve, reject) {
+    wx.getUserInfo({
+      withCredentials: true,
+      success: function (res) {
+        console.log(res)
+        resolve(res);
+      },
+      fail: function (err) {
+        reject(err);
+      }
+    })
+  });
+}
+
 function redirect(url) {
 
   //判断页面是否需要登录
@@ -146,8 +142,7 @@ function redirect(url) {
 
 function showErrorToast(msg) {
   wx.showToast({
-    title: msg,
-    image: '/static/images/icon_error.png'
+    title: msg
   })
 }
 

@@ -2,20 +2,30 @@
 <view class="m-ucenter g-row greybg">
   <view class="m-uc-top">
     <view class="m-profile">
-      <image class="avatar" src="{{ userInfo.avatarUrl }}" alt=""></image>
-      <view class="info">
-        <view class="nickname">
-          {{ userInfo.nickName }}
-        </view>
-        <view class="membershipLevel">
-          <text class="memberTitle1">菜鸟小店</text>
-        </view>
-        <!-- <view class="icon ion-ios-arrow-right top_right"></view> -->
+       <image class="avatar" src="{{ userInfo !=null ? userInfo.avatarUrl : '../../images/header.png' }}" alt=""></image> 
+      <view class="info" bindtap="login">
+        <block wx:if="{{userInfo != null}}">
+          <view class="nickname">
+            {{ userInfo.nickName }} 
+            <!-- 未登录 -->
+          </view>
+          <view class="membershipLevel">
+            <text class="memberTitle">您好</text>
+          </view>
+        </block>
+        <block wx:if="{{userInfo == null}}">
+          <view class="nickname">
+            未登录
+          </view>
+          <view class="membershipLevel">
+            <text class="memberTitle">点击登录账号</text>
+          </view>
+        </block>
       </view>
     </view>
   </view>
   
-  <view class="m-uc-wrap">
+<!--   <view class="m-uc-wrap">
     <navigator url='../orders/orders?t=all'>
       <view class="m-uc-wraptit" bindtap='navigatorOrders'>
         <text class="txt">我的订单</text>
@@ -53,9 +63,18 @@
         </view>
       </view>
     </view>
-  </view>
+  </view> -->
 
   <view class="m-uc-wrap">
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/orders/orders" catchtap='navigateTo'>
+      <view class="list-icon-wrap">
+        <image src="/images/coupon.png" class="list-icon"></image>
+      </view>
+      <view class="list-text">我的订单</view>
+      <view class="arrow-wrap">
+        <image src="/images/accessory.png" class="list-arrow"></image>
+      </view>
+    </view>
     <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/coupon/coupon" catchtap='navigateTo'>
       <view class="list-icon-wrap">
         <image src="/images/coupon.png" class="list-icon"></image>

@@ -62,6 +62,12 @@ page{
     color: #999;
 }
 
+.no-cart .c button{
+  display:block;
+  width:159rpx;
+  margin-top:30rpx;
+}
+
 
 .cart-view{
     width: 100%;
