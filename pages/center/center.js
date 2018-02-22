@@ -12,39 +12,6 @@ Page({
     imagePath: '',
     placeholder: '',//二维码生成文本
     showCenterDialog: false,
-
-    list: [
-      {
-        icon: '/images/coupon.png',
-        text: '优惠券',
-        tip: '2',
-        cut: true,
-        url: '../addresses/addresses'
-      },
-      {
-        icon: '/images/point.png',
-        text: '积分',
-        tip: '2000',
-        cut: true,
-        url: '../addresses/addresses'
-      },
-      {
-        icon: '/images/phone.png',
-        text: '手机号',
-        tip: '1380043433',
-      }, {
-        icon: '/images/businesscard.png',
-        text: '业务合作',
-        tip: 'xxxxx',
-        cut: true,
-        url: '../feedback/feedback'
-      }, {
-        icon: '/images/wang.png',
-        text: '关于商城',
-        tip: '',
-        url: '../about/about'
-      }
-    ]
   },
 
   /**
@@ -129,13 +96,7 @@ Page({
     })
 
   },
-  /**点击积分 */
-  navigateToPoint: function (e) {
-    var navigateUrl = e.currentTarget.dataset.url;
-    wx.switchTab({
-      url: navigateUrl,
-    })
-  },
+
   //点击图片放大
   imgView: function () {
     var that = this;

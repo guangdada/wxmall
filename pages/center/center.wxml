@@ -84,7 +84,7 @@
         <image src="/images/accessory.png" class="list-arrow"></image>
       </view>
     </view>
-    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/points/points" catchtap='navigateToPoint'>
+    <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/points/points" catchtap='navigateTo'>
       <view class="list-icon-wrap">
         <image src="/images/point.png" class="list-icon" style="width:43.18rpx;height:44.84rpx;"></image>
       </view>
