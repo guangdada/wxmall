@@ -2,11 +2,11 @@
 <view class="m-ucenter g-row greybg">
   <view class="m-uc-top">
     <view class="m-profile">
-       <image class="avatar" src="{{ userInfo !=null ? userInfo.avatarUrl : '../../images/header.png' }}" alt=""></image> 
+      <image class="avatar" src="{{ userInfo !=null ? userInfo.avatarUrl : '../../images/header.png' }}" alt=""></image>
       <view class="info" bindtap="login">
         <block wx:if="{{userInfo != null}}">
           <view class="nickname">
-            {{ userInfo.nickName }} 
+            {{ userInfo.nickName }}
             <!-- 未登录 -->
           </view>
           <view class="membershipLevel">
@@ -24,8 +24,8 @@
       </view>
     </view>
   </view>
-  
-<!--   <view class="m-uc-wrap">
+
+  <!--   <view class="m-uc-wrap">
     <navigator url='../orders/orders?t=all'>
       <view class="m-uc-wraptit" bindtap='navigatorOrders'>
         <text class="txt">我的订单</text>
@@ -68,7 +68,7 @@
   <view class="m-uc-wrap">
     <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/orders/orders" catchtap='navigateTo'>
       <view class="list-icon-wrap">
-        <image src="/images/coupon.png" class="list-icon"></image>
+        <image src="/images/order.png" class="list-icon" style="width:39.18rpx;height:42.84rpx;"></image>
       </view>
       <view class="list-text">我的订单</view>
       <view class="arrow-wrap">
@@ -86,7 +86,7 @@
     </view>
     <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/points/points" catchtap='navigateTo'>
       <view class="list-icon-wrap">
-        <image src="/images/point.png" class="list-icon" style="width:43.18rpx;height:44.84rpx;"></image>
+        <image src="/images/point.png" class="list-icon" style="width:38.18rpx;height:42.84rpx;"></image>
       </view>
       <view class="list-text">积分</view>
       <view class="arrow-wrap">2000分
@@ -95,7 +95,7 @@
     </view>
     <view class="list-item" hover-class="none" data-tip="2" data-url="/pages/bind-phone/bind-phone" catchtap='navigateTo'>
       <view class="list-icon-wrap">
-        <image src="/images/phone.png" class="list-icon" style="width:54rpx;height:44rpx;margin-left:-10rpx;"></image>
+        <image src="/images/phone.png" class="list-icon" style="width:46rpx;height:46rpx;"></image>
       </view>
       <view class="list-text">手机号</view>
       <text class="list-text-next">15678945612</text>
@@ -138,11 +138,11 @@
   <view class="dialog__container">
     <!--  //此区域自定义视图  -->
     <view class="flex_Center">
-      <view  class="close__pop" bindtap='onClickCancelCenterView'>
+      <view class="close__pop" bindtap='onClickCancelCenterView'>
         <text>关闭</text>
       </view>
       <view class="canvas__layer">
-        <canvas hidden="{{canvasHidden}}"  class="mycanvas"  canvas-id="mycanvas" />
+        <canvas hidden="{{canvasHidden}}" class="mycanvas" canvas-id="mycanvas" />
       </view>
     </view>
   </view>
