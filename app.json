@@ -15,7 +15,9 @@
     "pages/bind-phone/bind-phone",
     "pages/logs/logs",
     "pages/addressAdd/addressAdd",
-    "pages/address/address"
+    "pages/address/address",
+    "pages/pay/pay",
+    "pages/payResult/payResult"
   ],
   "window": {
     "backgroundTextStyle": "light",

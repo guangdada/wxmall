@@ -30,7 +30,7 @@ Page({
   addressAddOrUpdate (event) {
     console.log(event)
     wx.navigateTo({
-      url: '/pages/shopping/addressAdd/addressAdd?id=' + event.currentTarget.dataset.addressId
+      url: '/pages/addressAdd/addressAdd?id=' + event.currentTarget.dataset.addressId
     })
   },
   selectAddress(event){
@@ -44,7 +44,7 @@ Page({
 
     //选择该收货地址
     wx.redirectTo({
-      url: '/pages/shopping/checkout/checkout'
+      url: '/pages/settlement/settlement'
     })
   },
   onHide: function () {
