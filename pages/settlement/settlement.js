@@ -16,13 +16,21 @@ Page({
     orderTotalPrice: 0.00,  //订单总价
     actualPrice: 0.00,     //实际需要支付的总价
     addressId: 0,
-    couponId: 0
+    couponId: 0,
+    productId: 0 // 立即购买的商品id
   },
   onLoad: function (options) {
 
     // 页面初始化 options为页面跳转所带来的参数
 
     try {
+      var productId = wx.getStorageSync('productId');
+      if (productId) {
+        this.setData({
+          'productId': productId
+        });
+      }
+
       var addressId = wx.getStorageSync('addressId');
       if (addressId) {
         this.setData({
@@ -44,7 +52,7 @@ Page({
   },
   getCheckoutInfo: function () {
     let that = this;
-    util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId }).then(function (res) {
+    util.request(api.CartCheckout, { addressId: that.data.addressId, couponId: that.data.couponId,productId:that.data.productId }).then(function (res) {
       if (res.errno === 0) {
         console.log("查询到购物车选中的商品");
         that.setData({
@@ -93,10 +101,10 @@ Page({
 
   },
   submitOrder: function () {
-    if (this.data.addressId <= 0) {
+    /* if (this.data.addressId <= 0) {
       util.showErrorToast('请选择收货地址');
       return false;
-    }
+    } */
     util.request(api.OrderSubmit, { addressId: this.data.addressId, couponId: this.data.couponId }, 'POST').then(res => {
       if (res.errno === 0) {
         const orderId = res.data.orderInfo.id;

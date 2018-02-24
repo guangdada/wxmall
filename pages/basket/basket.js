@@ -243,7 +243,9 @@ Page({
       return false;
     }
 
-
+    // 清除立即购买时设置的产品Id
+    console.log("删除productId");
+    wx.removeStorageSync("productId");
     wx.navigateTo({
       url: '../settlement/settlement'
     })
