@@ -124,7 +124,7 @@
     </view>
     <view class="list-item" hover-class="none" data-tip="2">
       <view class="list-icon-wrap">
-        <image src="/images/business.png" class="list-icon" style="width:43.18rpx;height:40.84rpx;"></image>
+        <image src="/images/business.png" class="list-icon" style="width:44.18rpx;height:42.84rpx;"></image>
       </view>
       <view class="list-text">业务合作</view>
       <view class="arrow-wrap">15666558958</view>
