@@ -7,15 +7,15 @@
   </view>
 </view> 
 <view class="list-tab flexR" catchtap='toggleView'>
-  <view class="{{nowRole==0?'checked-item':''}}" data-index="0" style="background-color:#f7f7f7;padding:8rpx 0;">全场优惠券</view>
-  <view class="{{nowRole==1?'checked-item':''}}" data-index="1" style="background-color:#f7f7f7;padding:8rpx 0;">失效优惠券</view>
+  <view class="{{nowRole==0?'checked-item':''}}" data-index="0" style="background-color:#f7f7f7;padding:8rpx 0;">已使用优惠券</view>
+  <view class="{{nowRole==1?'checked-item':''}}" data-index="1" style="background-color:#f7f7f7;padding:8rpx 0;">未使用优惠券</view>
 </view>
 <!--列表展示  -->
 <swiper bindchange="toggleSwiper" current='{{currentIndex}}' style="height:{{winHeight}}px;">
   <!--全场优惠券  -->
   <swiper-item class="{{(couponList.length>0 && !loading) ? '': 'hidden'}} ">
-    <view style='background-image: url(/images/redc.jpg);height:130px;margin-bottom:30rpx;background-color:red;' wx:for="{{2}}">
-      <view style='padding:16rpx 0;'>
+    <view style='background-image: url(/images/redc.jpg);height:112px;margin-bottom:30rpx;background-color:red;' wx:for="{{2}}">
+      <view style='padding:8rpx 0;'>
         <view  class="coupon-content">
           <view class="coupon-left-content">
             <view class="coupon-left-price">￥5</view>
