@@ -27,26 +27,26 @@
             </swiper>
           </view>
 
-          <!--限时团购-->
+          <!--拼团购 限制购买数量， 没有满足则退款-->
           <view class='section' style="clear:both;" wx:if="{{groupGoods}}">
             <view class="layort-h">
               <view class="zw-title" style="height:80rpx;top:20rpx;position:relative;">
-                <text>限时团购</text>
+                <text>拼团购</text>
               </view>
               <view class="zw-proul2">
-                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="{{iitem.goods_id}}" data-activity-type="1" wx:for="{{groupGoods}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
-                  <image src="{{iitem.item_pic_url}}" alt=""></image>
+                <view class="zw-proli2" bindtap="navigateToProduct" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{groupGoods}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
+                  <image src="{{iitem.list_pic_url}}" alt=""></image>
                   <view class="zw-proli-tips">{{iitem.name}}</view>
                   <view class="zw-proli-info">
                     <view class="price-wrap">
                       ￥
                       <text class="price">{{iitem.retail_price}}</text>
                     </view>
-                    <view class="buy-time" wx:if="{{total_micro_second<=0}}">剩余时间：已经截止</view>
-                    <view class="buy-time" wx:if="{{clock!='已经截止'}}">
-                      倒计时：{{clock}}
-                    </view>
-                    <view class="send-time">配送日期：2018-08-12</view>
+                    
+                    <!-- <view class="buy-time" wx:if="{{clock!='已经截止'}}">
+                      成团数量：{{iitem.group_num}}
+                    </view> -->
+                    <view class="send-time">配送日期：{{iitem.arrival_date ? iitem.arrival_date : ''}}</view>
                   </view>
                 </view>
                 <view class="zw-banner">
@@ -55,10 +55,10 @@
               </view>
             </view>
 
-            <!--精品秒杀-->
+            <!--限时购 不限制人数 限制付款时间-->
             <view class="layort-h">
               <view class="zw-title">
-                <text class="title-item">精品秒杀</text>
+                <text class="title-item">限时购</text>
               </view>
               <view class="zw-proul2">
                 <view class="zw-proli2" bindtap="navigateToProduct" data-activity-type="1" data-activity-id="{{iitem.id}}" data-activity-type="1" wx:for="{{hotGoods}}" wx:key="{{iitem.id}}" wx:for-item="iitem" wx:for-index="{{iindex}}">
@@ -69,11 +69,11 @@
                       ￥
                       <text class="price">{{iitem.retail_price}}</text>
                     </view>
-                    <view class="buy-time" wx:if="{{total_micro_second<=0}}">剩余时间：已经截止</view>
+                    <!-- <view class="buy-time" wx:if="{{total_micro_second<=0}}">剩余时间：已经截止</view>
                     <view class="buy-time" wx:if="{{clock!='已经截止'}}">
                       倒计时：{{clock}}
-                    </view>
-                    <view class="send-time">配送日期：2018-08-12</view>
+                    </view> -->
+                    <view class="send-time">配送日期：{{iitem.arrival_date ? iitem.arrival_date : ''}}</view>
                   </view>
                 </view>
               </view>

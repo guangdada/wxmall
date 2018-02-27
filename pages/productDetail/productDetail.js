@@ -93,6 +93,7 @@ Page({
       id: parseInt(options.id)
     });
     this.getGoodsInfo();
+
     // 已经登录了才查询购物车数量
     if(app.hasToken()){
       util.request(api.CartGoodsCount).then(function (res) {
@@ -130,6 +131,9 @@ Page({
             'collectBackImage': that.data.noCollectImage
           });
         }
+
+
+        that.countdown();
 
         WxParse.wxParse('goodsDetail', 'html', res.data.info.goods_desc, that);
       }
@@ -410,12 +414,37 @@ Page({
       }
     });
   },
+  // 限时购倒计时
+  countdown:function(){
+    var that = this;
+    if (!that.data.goods.limitTime){
+      return;
+    }
+    var date = new Date(that.data.goods.limitTime || []);
+    var EndTime = date.getTime().toString();
+    var NowTime = new Date().getTime();
+    var total_micro_second = EndTime - NowTime || [];
+    // 渲染倒计时时钟
+    that.setData({
+      clock: util.dateformat(total_micro_second)
+    });
+    if (total_micro_second <= 0) {
+      that.setData({
+        clock: "已经截止",
+        total_micro_second: total_micro_second
+      });
+      return;
+    }
+    setTimeout(function () {
+      total_micro_second -= 1000;
+      that.countdown();
+    }, 1000)
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-
   },
 
   /**

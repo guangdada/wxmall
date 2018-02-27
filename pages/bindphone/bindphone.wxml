@@ -51,9 +51,7 @@
       <view class='code-des'>
         <text>验证码</text>
       </view>
-      <view class="random-code" >
-        <image src="{{codeSrc}}" style="height:40px;width:100px;" bindtap="refreshCode"></image>
-      </view>
+        <image src="{{codeSrc}}" class="random-code"  style="height:40px;width:100px;" bindtap="refreshCode"></image>
       <view>
         <input class="weui-input code-input" type="text" name="code" value="" placeholder="请输入验证码" bindinput='listenerCodeInput' auto-focus='true' />
       </view>

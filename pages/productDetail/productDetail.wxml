@@ -19,12 +19,12 @@
         <view class="info">
           <view class="name">{{goods.name}}</view>
           <view class="desc">
-   <!--          <text wx:if="{{activityType==1 || activityType==3}}">抢购倒计时：1天2小时30分</text> -->
-            <text style="color:black;position:absolute;right:30rpx;font-size:28rpx;">商品数量<text style="color:#b4282d;"> {{goods.goods_number}} </text>{{goods.goods_unit}}</text>
+             <text wx:if="{{goods.is_limitTime == 1}}">限时购：{{clock}}</text> 
+             <view class="desc" wx:if="{{goods.is_group == 1}}">拼团购：满{{goods.group_num}}件成团</view>
+            <text style="color:black;position:absolute;right:30rpx;font-size:28rpx;">商品数量<text style="color:#b4282d;"> {{goods.goods_number}} </text>{{goods.goods_unit?goods.goods_unit:''}}</text>
           </view>
-          <view class="desc">配送日期：2018-08-12</view>
-          <!-- <view class="desc" wx:if="{{activityType==2}}">预计2018-01-26日后到货，现在可下单</view>
-          <view class="desc" wx:if="{{activityType==3}}">配送条件：满两件才可下单</view> -->
+          <view class="desc" wx:if="{{goods.arrival_date != null}}">预计{{goods.arrival_date}}后到货，现在可下单</view>
+          
           <view class="price">￥{{goods.retail_price}}</view>
         </view>
       </view>
