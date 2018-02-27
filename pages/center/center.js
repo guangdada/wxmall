@@ -12,6 +12,7 @@ Page({
     imagePath: '',
     placeholder: '',//二维码生成文本
     showCenterDialog: false,
+    mobile:''
   },
 
   /**
@@ -42,6 +43,7 @@ Page({
         code = res.code;
         return util.getUserInfo();
       }).then((userInfo) => {
+        wx.showLoading();
         console.log("用户同意授权");
         //登录远程服务器
         util.request(api.AuthLoginByWeixin, { code: code, userInfo: userInfo }, 'POST').then(res => {
@@ -50,17 +52,21 @@ Page({
             console.log("存储用户信息");
             wx.setStorageSync('userInfo', res.data.userInfo);
             wx.setStorageSync('token', res.data.token);
+            wx.setStorageSync('mobile', res.data.mobile);
             app.globalData.userInfo = res.data.userInfo;
             that.getUserInfo();
           } else {
             console.log("请求后台登录失败" + JSON.stringify(res));
           }})
+          setTimeout(function(){
+            wx.hideLoading();
+          },500);
       }).catch((err) => {
         // 用户不同意授权，返回上一个页面
         console.log("用户不同意授权");
         wx.showModal({
           title: '授权提示',
-          content: '小程序需要您的授权才能使用',
+          content: '小程序需要您的授权才能使用哦',
           success: function (res) {
             if (res.confirm) {
               wx.openSetting({
@@ -84,17 +90,21 @@ Page({
     const userInfo = app.globalData.userInfo || wx.getStorageSync("userInfo");
     if (userInfo) {
       this.setData({
-        userInfo: userInfo
+        userInfo: userInfo,
+        mobile: wx.getStorageSync("mobile")
       })
     }
   },
   /**跳转处理 */
   navigateTo: function (e) {
-    var navigateUrl = e.currentTarget.dataset.url;
-    wx.navigateTo({
-      url: navigateUrl,
-    })
-
+    console.log("跳轉到" + e.currentTarget.dataset.url);
+    this.login();
+    if (app.hasToken()) {
+      var navigateUrl = e.currentTarget.dataset.url;
+      wx.navigateTo({
+        url: navigateUrl,
+      })
+    }
   },
 
   //点击图片放大
@@ -144,6 +154,7 @@ Page({
    */
   onShow: function () {
     this.login();
+    this.getUserInfo();
     console.log("onShow");
   },
 

@@ -8,6 +8,8 @@ Page({
     actualPrice: 0.00
   },
   onLoad: function (options) {
+    console.log("orderId:" + options.orderId);
+    console.log("actualPrice:" + options.actualPrice);
     // 页面初始化 options为页面跳转所带来的参数
     this.setData({
       orderId: options.orderId,
@@ -31,8 +33,10 @@ Page({
   },
   //向服务请求支付参数
   requestPayParam() {
+    console.log("调用了requestPayParam" + api.PayPrepayId);
     let that = this;
     util.request(api.PayPrepayId, { orderId: that.data.orderId, payType: 1 }).then(function (res) {
+      console.log("预支付返回:" + res.errmsg);
       if (res.errno === 0) {
         let payParam = res.data;
         wx.requestPayment({

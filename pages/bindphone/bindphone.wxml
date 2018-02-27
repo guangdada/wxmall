@@ -1,10 +1,11 @@
 <!--pages/bind-phone/bind-phone.wxml-->
 <view>
-  <view style='background-color:#24b2f4; height: 120px;background-repeat: no-repeat;background-size:cover;'>
+<!--   <view style='background-color:#24b2f4; height: 120px;background-repeat: no-repeat;background-size:cover;'>
     <view class="title" style="font-size:16px;color:white;">绑定手机号</view>
-  </view>
+  </view> -->
   <view class="weui-cells__title"></view>
   <view class="weui-cells weui-cells_after-title">
+
     <view class="weui-cell weui-cell_input weui-cell_vcode">
       <view class="weui-cell__hd">
         <view class="weui-label">手机号</view>
@@ -13,7 +14,7 @@
         <input class="weui-input" placeholder="请输入手机号" type="number" maxlength="11" bindinput="listenerPhoneInput" />
       </view>
       <view class="weui-cell__ft" bindtap="checkPhone">
-        <view class="weui-vcode-btn">获取验证码</view>
+         <view class="weui-vcode-btn">获取验证码</view> 
       </view>
     </view>
 
@@ -25,6 +26,7 @@
         <input class="weui-input" type="number" placeholder="请输入手机短信验证码" bindinput="listenerMobileCodeInput" />
       </view>
     </view>
+
     <view class="weui-cell weui-cell_input weui-cell_vcode">
       <view class="weui-cell__hd">
         <view class="weui-label">推荐码</view>
@@ -33,6 +35,7 @@
         <input class="weui-input" placeholder="请输入推荐码" bindinput="listenerReferralCodeInput" />
       </view>
     </view>
+
   </view>
   <button class="weui-btn" type="primary" style="margin-right:10px;margin-left:10px;background-color:#24b2f4;" bindtap='memberRegister'>立即绑定</button>
 
@@ -48,11 +51,11 @@
       <view class='code-des'>
         <text>验证码</text>
       </view>
-      <view class="random-code" bindtap='refreshCode'>
-        <!-- <image src="{{codeSrc}}" style="height:40px;width:100px;" bindtap="refreshCode"></image> -->{{randomCode}}
+      <view class="random-code" >
+        <image src="{{codeSrc}}" style="height:40px;width:100px;" bindtap="refreshCode"></image>
       </view>
       <view>
-        <input class="weui-input code-input" type="text" name="code" value="" placeholder="请输入图中验证码" bindinput='listenerCodeInput' auto-focus='true' />
+        <input class="weui-input code-input" type="text" name="code" value="" placeholder="请输入验证码" bindinput='listenerCodeInput' auto-focus='true' />
       </view>
       <view class='confirm-content'>
         <view style="margin-left:12px;" bindtap='onClickCancelCenterView'>取消</view>

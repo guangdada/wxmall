@@ -1,4 +1,5 @@
-// pages/bind-phone/bind-phone.js
+var api = require('../../config/api.js');
+var util = require('../../utils/util.js');
 let timer = null;
 var app = getApp();
 
@@ -13,9 +14,9 @@ Page({
     showCenterDialog: false,
     inputCode: '',
     codeSrc: '',
-    mobileCode: '',
-    referralCode: '',
-    randomCode: ''
+    mobileCode: '', //短信码
+    referralCode: '', // 推荐码
+    randomCode: '' // 验证码
   },
 
   /**
@@ -24,21 +25,16 @@ Page({
   onLoad: function (options) {
     var that = this;
     this.refreshCode();
-    //手机号码，如果已经绑定，要修改，则显示原来的号码
-    /* this.setData({
-      phone:15687876756
-    }) */
   },
 
   /**刷新验证码 */
   refreshCode: function () {
     var that = this;
-    var randomCode = "";
-    for (var i = 0; i < 4; i++) {
-      randomCode += Math.floor(Math.random() * 10)
-    }
+    var token = wx.getStorageSync("token");
+    var codeSrc = api.UserImgCodeSrc + "?X-Nideshop-Token=" + token + "&t="  + new Date().getTime();
+    console.log(codeSrc);
     that.setData({
-      randomCode: randomCode
+      codeSrc: codeSrc
     });
     console.log("randomCode:" + that.data.randomCode)
   },
@@ -97,7 +93,9 @@ Page({
   listenerPhoneInput: function (e) {
     this.data.phone = e.detail.value;
   },
-
+  /**
+   * 判断验证码是否正确
+   */
   checkPhone: function () {
     var phone = this.data.phone;
     console.log("Phone" + phone);
@@ -167,65 +165,97 @@ Page({
     console.log(e.detail.value);
     this.data.referralCode = e.detail.value;
   },
-
+  /**
+   * 验证图形吗是否输入正确，正确才发送短信码
+   */
+  validateImgCode:function(){
+    var that = this;
+    console.log("mobile:"+ that.data.phone);
+    console.log("inputCode:" + that.data.inputCode);
+    util.request(api.UserValidtecode, { randomCode: that.data.inputCode, mobile: that.data.phone}, 'POST').then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          isTopTips: true,
+          TopTipscontent: "短信验证码已发送",
+          showCenterDialog: false,
+        });
+        timer = setTimeout(function () {
+          that.setData({
+            isTopTips: false,
+          });
+        }, 1500);
+      }else{
+        that.setData({
+          isTopTips: true,
+          TopTipscontent: "验证码输入不正确",
+        });
+        timer = setTimeout(function () {
+          that.setData({
+            isTopTips: false,
+          });
+        }, 1500);
+      }
+    });
+  },
+  /**
+   * 绑定手机号
+   */
+  bindPhone:function(){
+    var that = this;
+    util.request(api.UserBindphone, { mobile: that.data.phone, mobileCode: that.data.mobileCode, referralCode: that.data.referralCode }, 'POST').then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          isTopTips: true,
+          TopTipscontent: "绑定成功",
+        });
+        timer = setTimeout(function () {
+          that.setData({
+            isTopTips: false,
+          });
+          wx.setStorageSync("mobile", that.data.phone);
+          wx.navigateBack();
+        }, 1500);
+      } else {
+        that.setData({
+          isTopTips: true,
+          TopTipscontent: "绑定失败:" + res.errmsg,
+        });
+        timer = setTimeout(function () {
+          that.setData({
+            isTopTips: false,
+          });
+        }, 1500);
+        console.log('绑定失败:' + res.errmsg);
+      }
+    });
+  },
   //点击确定按钮
   onClickConfirmCenterView: function (e) {
     //判断输入的那个验证码是否正确
-    console.log(e);
     let that = this;
     var inputCode = that.data.inputCode;
     var mobile = that.data.phone;
-    var randomCode = that.data.randomCode;
+    //var randomCode = that.data.randomCode;
     console.log(inputCode);
     console.log(mobile);
-    if (inputCode == randomCode) {
+    if (!inputCode || inputCode.length != 4){
       that.setData({
         isTopTips: true,
-        TopTipscontent: "短信验证码已发送",
-        showCenterDialog: false,
-      });
-      timer = setTimeout(function () {
-        that.setData({
-          isTopTips: false,
-        });
-      }, 1500);
-    } else {
-      that.setData({
-        isTopTips: true,
-        TopTipscontent: "验证码输入不正确，请重新输入验证码或请点击图片刷新，重新验证",
+        TopTipscontent: "验证码输入不正确",
       });
       timer = setTimeout(function () {
         that.setData({
           isTopTips: false,
         });
       }, 2000);
+      // 刷新验证码
+      that.refreshCode();
+      return;
     }
-    /*  var data = { sessionid: app.globalData.sessionid, code: code, mobile: mobile };
-     util.requestGet(config.apiList.validateCode, data, function (res) {
-       console.log(res.data);
-       if (res.data.code == 200) {
-         that.setData({
-           isTopTips: true,
-           TopTipscontent: "短信验证码已发送",
-           showCenterDialog: false,
-         });
-         timer = setTimeout(function () {
-           that.setData({
-             isTopTips: false,
-           });
-         }, 1500);
-       } else {
-         that.setData({
-           isTopTips: true,
-           TopTipscontent: "验证码输入不正确，请重新输入验证码或请点击图片刷新，重新验证",
-         });
-         timer = setTimeout(function () {
-           that.setData({
-             isTopTips: false,
-           });
-         }, 2000);
-       } 
-     })*/
+
+    // 调用后台发送短信码
+    that.validateImgCode();
+    
   },
 
   /**点击激活按钮 */
@@ -273,40 +303,7 @@ Page({
       }, 1500);
       return;
     }
-    var data = { sessionid: app.globalData.sessionid, mobile: mobile, mobileCode: mobileCode };
-    util.requestPost(config.apiList.memberRegister, data, function (res) {
-      if (res.data.code == 200) {
-        that.setData({
-          isTopTips: true,
-          TopTipscontent: "绑定成功",
-        });
-        timer = setTimeout(function () {
-          that.setData({
-            isTopTips: false,
-          });
-        }, 1500);
-        wx.navigateTo({
-          url: "/pages/index",//url跳转地址
-          success: function (res) {
-            console.log(res)
-          },
-          fail: function (res) {
-            console.log(res)
-          }
-        })
-      } else {
-        that.setData({
-          isTopTips: true,
-          TopTipscontent: "绑定失败:" + res.data.msg,
-        });
-        timer = setTimeout(function () {
-          that.setData({
-            isTopTips: false,
-          });
-        }, 1500);
-        console.log('绑定失败:' + res.data.msg);
-        util.showLoading("网络开差了");
-      }
-    });
+    // 发起绑定
+    that.bindPhone();
   },
 })

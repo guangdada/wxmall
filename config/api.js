@@ -1,4 +1,4 @@
-var NewApiRootUrl = 'http://localhost:8080/api/';
+var NewApiRootUrl = 'http://192.168.168.125:8080/api/';
 
 module.exports = {
     IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口
@@ -58,4 +58,9 @@ module.exports = {
 
     FootprintList: NewApiRootUrl + 'footprint/list',  //足迹列表
     FootprintDelete: NewApiRootUrl + 'footprint/delete',  //删除足迹
+
+    UserImgCodeSrc: NewApiRootUrl + 'imgcode/register',  //验证图形码
+    UserValidtecode: NewApiRootUrl + 'user/validtecode',  //验证图形码
+    UserBindphone: NewApiRootUrl + 'user/bindphone',  //绑定手机号
+    
 };

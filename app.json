@@ -12,12 +12,14 @@
     "pages/coupon/coupon",
     "pages/points/points",
     "pages/service/service",
-    "pages/bind-phone/bind-phone",
+    "pages/bindphone/bindphone",
     "pages/logs/logs",
     "pages/addressAdd/addressAdd",
     "pages/address/address",
     "pages/pay/pay",
-    "pages/payResult/payResult"
+    "pages/payResult/payResult",
+    "pages/order/order",
+    "pages/orderDetail/orderDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
