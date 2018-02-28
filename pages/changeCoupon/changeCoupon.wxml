@@ -1,0 +1,18 @@
+<view class="coupon-whole-content" style='background-image: url(/images/orangebg.jpg);' wx:for="{{2}}">
+  <view style='padding:8rpx 0;'>
+    <view>
+      <view class="coupon-left-content">
+        <view class="coupon-left-price">
+          <text style="font-size:28rpx;padding:4rpx;">￥</text>5</view>
+        <view class="coupon-left-des">订单金额满159元可使用</view>
+        <view class="coupon-left-time">有效期2018.01.31-2018.05.31</view>
+      </view>
+      <view class="coupon-right-content">
+        <view class="coupon-right-name">
+          1000积分
+          <view class="change-button">兑换</view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

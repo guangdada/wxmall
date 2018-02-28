@@ -10,6 +10,7 @@
     "pages/address-edit/address-edit",
     "pages/orders/orders",
     "pages/coupon/coupon",
+    "pages/changeCoupon/changeCoupon",
     "pages/points/points",
     "pages/service/service",
     "pages/bindphone/bindphone",
