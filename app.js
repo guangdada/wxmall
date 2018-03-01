@@ -1,4 +1,6 @@
 //app.js
+var util = require('/utils/util.js');
+var api = require('/config/api.js');
 App({
   onLaunch: function () {
     // 展示本地存储能力
@@ -41,5 +43,19 @@ App({
     console.log("hasToken?");
     let token = wx.getStorageSync("token");
     return token ? true:false
+  },
+  /**获取用户信息 */
+  getUserInfo() {
+    var that = this;
+    util.request(api.Userinfo, {}, 'POST').then(res => {
+      if (res.errno === 0) {
+        console.log("存储用户信息");
+        //存储用户信息
+        var userInfo = res.data;
+        wx.setStorageSync('userInfo', userInfo);
+      } else {
+        console.log("请求后台登录失败" + JSON.stringify(res));
+      }
+    })
   }
 })

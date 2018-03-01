@@ -1,19 +1,19 @@
 <!--pages/center/center.wxml-->
 <view class="m-ucenter g-row greybg">
   <view class="m-uc-top">
-    <view class="m-profile">
-      <image class="avatar" src="{{ userInfo !=null ? userInfo.avatarUrl : '../../images/header.png' }}" alt=""></image>
-      <view class="info" bindtap="login">
-        <block wx:if="{{userInfo != null}}">
+    <view class="m-profile" bindtap="login">
+      <image class="avatar" src="{{ avatar !=null ? avatar : '../../images/header.png' }}" alt=""></image>
+      <view class="info" >
+        <block wx:if="{{nickname != null}}">
           <view class="nickname">
-            {{ userInfo.nickName }}
+            {{ nickname }}
             <!-- 未登录 -->
           </view>
           <view class="membershipLevel">
             <text class="memberTitle">您好</text>
           </view>
         </block>
-        <block wx:if="{{userInfo == null}}">
+        <block wx:if="{{nickname == null}}">
           <view class="nickname">
             未登录
           </view>
@@ -82,7 +82,7 @@
         <image src="/images/coupon.png" class="list-icon"></image>
       </view>
       <view class="list-text">优惠券</view>
-      <view class="arrow-wrap">2张
+      <view class="arrow-wrap">{{points}}张
         <image src="/images/accessory.png" class="list-arrow"></image>
       </view>
     </view>
@@ -93,7 +93,7 @@
         <image src="/images/point.png" class="list-icon" style="width:38.18rpx;height:42.84rpx;"></image>
       </view>
       <view class="list-text">积分</view>
-      <view class="arrow-wrap">2000分
+      <view class="arrow-wrap">{{points}}分
         <image src="/images/accessory.png" class="list-arrow"></image>
       </view>
     </view>

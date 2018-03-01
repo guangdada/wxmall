@@ -12,14 +12,16 @@ Page({
     imagePath: '',
     placeholder: '',//二维码生成文本
     showCenterDialog: false,
-    mobile:''
+    mobile:'',
+    points:0,
+    nickname:'',
+    avatar:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    //this.getUserInfo();
     //绘制二维码
     var size = this.setCanvasSize();//动态设置画布大小
    // var initUrl = res.data.content.cardNum;
@@ -27,7 +29,7 @@ Page({
     var initUrl='12354'
     this.createQrCode(initUrl, "mycanvas", size.w, size.h);
     console.log("onload");
-    this.getUserInfo();
+    //this.getUserInfo();
   },
   login : function(){
     let that = this;
@@ -50,10 +52,10 @@ Page({
           if (res.errno === 0) {
             //存储用户信息
             console.log("存储用户信息");
-            wx.setStorageSync('userInfo', res.data.userInfo);
+            //wx.setStorageSync('userInfo', res.data.userInfo);
             wx.setStorageSync('token', res.data.token);
-            wx.setStorageSync('mobile', res.data.mobile);
-            app.globalData.userInfo = res.data.userInfo;
+            //wx.setStorageSync('mobile', res.data.mobile);
+            //app.globalData.userInfo = res.data.userInfo;
             that.getUserInfo();
           } else {
             console.log("请求后台登录失败" + JSON.stringify(res));
@@ -82,18 +84,30 @@ Page({
         })
       });
     } else {
+      that.getUserInfo();
       console.log("已经登录过了");
     }
   },
   /**获取用户信息 */
   getUserInfo() {
-    const userInfo = app.globalData.userInfo || wx.getStorageSync("userInfo");
-    if (userInfo) {
-      this.setData({
-        userInfo: userInfo,
-        mobile: wx.getStorageSync("mobile")
-      })
-    }
+    var that = this;
+    //const userInfo = app.globalData.userInfo || wx.getStorageSync("userInfo");
+    util.request(api.Userinfo, {}, 'POST').then(res => {
+      if (res.errno === 0) {
+        var userInfo = res.data;
+        wx.setStorageSync('userInfo', userInfo);
+        //存储用户信息
+        that.setData({
+          mobile: userInfo.mobile,
+          coupons: userInfo.coupons,
+          points: userInfo.points,
+          avatar: userInfo.avatar,
+          nickname: userInfo.nickname
+        });
+      } else {
+        console.log("请求后台登录失败" + JSON.stringify(res));
+      }
+    })
   },
   /**跳转处理 */
   navigateTo: function (e) {
@@ -154,7 +168,7 @@ Page({
    */
   onShow: function () {
     this.login();
-    this.getUserInfo();
+    //this.getUserInfo();
     console.log("onShow");
   },
 

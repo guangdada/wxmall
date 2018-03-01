@@ -38,7 +38,7 @@ function request(url, data = {}, method = "GET") {
             //处理token过期
             console.log("返回了401");
             wx.removeStorageSync("token");
-            wx.removeStorageSync("userInfo");
+            //wx.removeStorageSync("userInfo");
             reject(res.data.errmsg);
           } else {
             console.log("返回成功");

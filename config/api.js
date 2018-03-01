@@ -1,4 +1,4 @@
-var NewApiRootUrl = 'http://192.168.168.125:8080/api/';
+var NewApiRootUrl = 'http://localhost:8080/api/';
 
 module.exports = {
     IndexUrl: NewApiRootUrl + 'index/index', //首页数据接口
@@ -62,5 +62,9 @@ module.exports = {
     UserImgCodeSrc: NewApiRootUrl + 'imgcode/register',  //验证图形码
     UserValidtecode: NewApiRootUrl + 'user/validtecode',  //验证图形码
     UserBindphone: NewApiRootUrl + 'user/bindphone',  //绑定手机号
+    Userinfo: NewApiRootUrl + 'user/info',  //用户信息
+
+    Sign: NewApiRootUrl + 'user/sign',  //签到
+    PointTrade: NewApiRootUrl + 'user/pointlog',  //积分记录
     
 };
