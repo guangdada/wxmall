@@ -110,21 +110,6 @@ function getUserInfo() {
   });
 }
 
-function getUserInfo2(code) {
-  return new Promise(function (resolve, reject) {
-    wx.getUserInfo({
-      withCredentials: true,
-      success: function (res) {
-        console.log(res)
-        resolve(res);
-      },
-      fail: function (err) {
-        reject(err);
-      }
-    })
-  });
-}
-
 function redirect(url) {
 
   //判断页面是否需要登录

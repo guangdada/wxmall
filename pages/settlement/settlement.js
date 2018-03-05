@@ -9,7 +9,7 @@ Page({
     checkedGoodsList: [],
     checkedAddress: {},
     checkedCoupon: [],
-    couponList: [],
+    coupons: 0,
     goodsTotalPrice: 0.00, //商品总价
     freightPrice: 0.00,    //快递费
     couponPrice: 0.00,     //优惠券的价格
@@ -22,7 +22,48 @@ Page({
   onLoad: function (options) {
 
     // 页面初始化 options为页面跳转所带来的参数
+  },
+  getCheckoutInfo: function () {
+    let that = this;
+    util.request(api.CartCheckout, { addressId: that.data.addressId, couponNumber: that.data.couponNumber,productId:that.data.productId }).then(function (res) {
+      if (res.errno === 0) {
+        console.log("查询到购物车选中的商品");
+        that.setData({
+          checkedGoodsList: res.data.checkedGoodsList,
+          checkedAddress: res.data.checkedAddress,
+          actualPrice: res.data.actualPrice,
+          checkedCoupon: res.data.checkedCoupon,
+          coupons: res.data.coupons,
+          couponPrice: res.data.couponPrice,
+          freightPrice: res.data.freightPrice,
+          goodsTotalPrice: res.data.goodsTotalPrice,
+          orderTotalPrice: res.data.orderTotalPrice
+        });
+      }
+      wx.hideLoading();
+    });
+  },
+  selectAddress() {
+    wx.navigateTo({
+      url: '/pages/address/address',
+    })
+  },
+  // 选择要使用的优惠券
+  selectCoupon() {
+    wx.navigateTo({
+      url: '/pages/coupon/coupon?orderId=0'
+    })
+  },
+  addAddress() {
+    wx.navigateTo({
+      url: '/pages/addressAdd/addressAdd',
+    })
+  },
+  onReady: function () {
+    // 页面渲染完成
 
+  },
+  onShow: function () {
     try {
       var productId = wx.getStorageSync('productId');
       if (productId) {
@@ -47,44 +88,6 @@ Page({
     } catch (e) {
       // Do something when catch error
     }
-
-
-  },
-  getCheckoutInfo: function () {
-    let that = this;
-    util.request(api.CartCheckout, { addressId: that.data.addressId, couponNumber: that.data.couponNumber,productId:that.data.productId }).then(function (res) {
-      if (res.errno === 0) {
-        console.log("查询到购物车选中的商品");
-        that.setData({
-          checkedGoodsList: res.data.checkedGoodsList,
-          checkedAddress: res.data.checkedAddress,
-          actualPrice: res.data.actualPrice,
-          checkedCoupon: res.data.checkedCoupon,
-          couponList: res.data.couponList,
-          couponPrice: res.data.couponPrice,
-          freightPrice: res.data.freightPrice,
-          goodsTotalPrice: res.data.goodsTotalPrice,
-          orderTotalPrice: res.data.orderTotalPrice
-        });
-      }
-      wx.hideLoading();
-    });
-  },
-  selectAddress() {
-    wx.navigateTo({
-      url: '/pages/address/address',
-    })
-  },
-  addAddress() {
-    wx.navigateTo({
-      url: '/pages/addressAdd/addressAdd',
-    })
-  },
-  onReady: function () {
-    // 页面渲染完成
-
-  },
-  onShow: function () {
     // 页面显示
     wx.showLoading({
       title: '加载中...',
@@ -118,7 +121,7 @@ Page({
           });
         });
       } else {
-        util.showErrorToast('下单失败');
+        util.showErrorToast(res.errmsg);
       }
     });
   }

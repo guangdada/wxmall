@@ -66,5 +66,11 @@ module.exports = {
 
     Sign: NewApiRootUrl + 'user/sign',  //签到
     PointTrade: NewApiRootUrl + 'user/pointlog',  //积分记录
+
+    CouponList: NewApiRootUrl + 'coupon/list', //优惠券列表
+    CouponExchange: NewApiRootUrl + 'coupon/exchange' ,//优惠券兑换
+    UserCouponList: NewApiRootUrl + 'userCoupon/list' ,//用户优惠券
+    ServiceList: NewApiRootUrl + 'service/list', //生活服务
+    ServiceVisits: NewApiRootUrl + 'service/visit' //保存咨询人数
     
 };

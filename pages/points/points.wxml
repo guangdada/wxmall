@@ -1,8 +1,8 @@
 <!--pages/points/points.wxml-->
 <view class="container">
-  <view bindtap="bindViewTap" class="userinfo">
+  <view class="userinfo">
     <image class="userinfo-avatar" wx:if="{{ userInfo.avatar }}" src="{{ userInfo.avatar }}" background-size="cover"></image>
-    <text class="coupon-change">兑换优惠券</text>
+    <text class="coupon-change" bindtap='tocoupon'>兑换优惠券</text>
     <view class="flex-layout" style="width:100%;display:flex;flex-direction:row;justify-content:space-around;">
       <view class="point-display">
         <view class="userinfo-nickname">{{ userInfo.nickname }}</view>

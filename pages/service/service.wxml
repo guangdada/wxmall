@@ -4,20 +4,20 @@
   <image src="http://image.chubanyun.net/images/TRQ/investment_banner.png" mode="widthFix"></image>
 </view>
 <view class="investment-people-list flexC">
-  <view class="item flexR" wx:for="{{5}}" bindtap='toDetail' data-type="people">
+  <view class="item flexR" wx:for="{{serviceList}}" wx:key="{{id}}" bindtap='toDetail'>
     <view class="image flexC">
-      <image src='/images/wang.png' class="peoloe" mode="widthFix"></image>
+      <image src='{{item.imageUrl == null ? "/images/wang.png" : item.imageUrl}}' class="peoloe" mode="widthFix"></image>
     </view>
     <view class="people-info flexC">
       <view>
-        <text>徐小平</text>总经理</view>
-      <view class="a-line">电话：17545458545</view>
-      <view>汽车保险 保险</view>
+        <text>{{item.name}}</text>{{item.job}}</view>
+      <view class="a-line">电话：{{item.phone}}</view>
+      <view>{{item.remark}}</view>
     </view>
     <view class="do-info flexC">
       <view>
-        <text>502</text>人咨询</view>
-       <view class="service-consult" bindtap='consult'>咨询</view> 
+        <text>{{item.visits}}</text>人咨询</view>
+       <view class="service-consult" data-id='{{item.id}}' data-phone='{{item.phone}}' bindtap='consult'>咨询         </view> 
     </view>
   </view>
 </view>

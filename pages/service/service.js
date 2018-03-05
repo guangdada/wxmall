@@ -1,18 +1,50 @@
-// pages/service/service.js
+var util = require('../../utils/util.js');
+var api = require('../../config/api.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    page: 1,
+    size: 10,
+    totalPages: 1,
+    serviceList:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    this.getServiceList()
+  },
+
+  // 查询记录
+  getServiceList() {
+    wx.showLoading({
+      title: '加载中...',
+    });
+    let that = this;
+    util.request(api.ServiceList, {page: that.data.page, size: that.data.size }).then(function (res) {
+      if (res.errno === 0) {
+        that.setData({
+          serviceList: that.data.serviceList.concat(res.data.data),
+          totalPages: res.data.totalPages
+        });
+      }
+      wx.hideLoading();
+    });
+  },
+  onReachBottom() {
+    if (this.data.totalPages > this.data.page) {
+      this.setData({
+        page: this.data.page + 1
+      });
+    } else {
+      return false;
+    }
+
+    this.getServiceList();
   },
 
   /**
@@ -34,6 +66,23 @@ Page({
    */
   onHide: function () {
   
+  },
+  consult:function(e){
+    var phone = e.currentTarget.dataset.phone;
+    var id = e.currentTarget.dataset.id;
+    console.log("id:" + id);
+    wx.makePhoneCall({
+      phoneNumber: phone,
+      success:function(){
+        console.log("makePhoneCall success");
+        //保存咨询人数
+        util.request(api.ServiceVisits, {id:id},'POST').then(function (res) {
+          if (res.errno === 0) {
+           
+          }
+        });
+      }
+    })
   },
 
   /**

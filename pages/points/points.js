@@ -36,6 +36,12 @@ Page({
       })
     }
   },
+  //跳转到兑换优惠券页面
+  tocoupon:function(){
+    wx.navigateTo({
+      url: '/pages/changeCoupon/changeCoupon',
+    })
+  },
  // 查询积分记录
   getTradeList(){
     wx.showLoading({

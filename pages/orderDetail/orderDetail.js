@@ -56,8 +56,8 @@ Page({
     var errorMessage = '';
     switch (order_status){
       case 300: {
-        console.log('已发货，不能取消');
-        errorMessage = '订单已发货';
+        console.log('已配货，不能取消');
+        errorMessage = '订单已配货';
         break;
       }
       case 301:{
@@ -70,19 +70,9 @@ Page({
         errorMessage = '订单已取消';
         break;
       }
-      case 102: {
-        console.log('已经删除');
-        errorMessage = '订单已删除';
-        break;
-      }
       case 401: {
         console.log('已经退款');
         errorMessage = '订单已退款';
-        break;
-      }
-      case 402: {
-        console.log('已经退款退货');
-        errorMessage = '订单已退货';
         break;
       }
     }
@@ -113,9 +103,11 @@ Page({
                 showCancel:false,
                 confirmText:'继续',
                 success: function (res) {
-                  util.redirect('/pages/ucenter/order/order');
+                  util.redirect('/pages/order/order');
                 }
               });
+            }else{
+              util.showErrorToast(res.errmsg);
             }
           });
 

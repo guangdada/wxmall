@@ -21,7 +21,7 @@
           <view class="desc">
              <text wx:if="{{goods.is_limitTime == 1}}">限时购：{{clock}}</text> 
              <view class="desc" wx:if="{{goods.is_group == 1}}">拼团购：满{{goods.group_num}}件成团</view>
-            <text style="color:black;position:absolute;right:30rpx;font-size:28rpx;">商品数量<text style="color:#b4282d;"> {{goods.goods_number}} </text>{{goods.goods_unit?goods.goods_unit:''}}</text>
+            <text style="color:black;position:absolute;right:30rpx;font-size:28rpx;">已销售<text style="color:#b4282d;"> {{goods.sell_volume}} </text>{{goods.goods_unit?goods.goods_unit:''}}</text>
           </view>
           <view class="desc" wx:if="{{goods.arrival_date != null}}">预计{{goods.arrival_date}}后到货，现在可下单</view>
           

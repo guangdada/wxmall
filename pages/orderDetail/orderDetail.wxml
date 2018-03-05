@@ -9,9 +9,12 @@
                   <view class="btn" bindtap="cancelOrder">取消订单</view>
                   <view class="btn active" bindtap="payOrder">去付款</view>
                 </view>
+                <view wx:elif="{{orderInfo.handleOption.cancel}}">
+                  <view class="btn" bindtap="cancelOrder">取消订单</view>
+                </view>
                 <view wx:else>
                   <!-- <view class="btn active" bindtap="cancelOrder">取消订单</view> -->
-                  <view class="btn active">已取消</view>
+                  <!-- <view class="btn active">已取消</view> -->
                 </view>
             </view>
         </view>

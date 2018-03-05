@@ -73,6 +73,8 @@ page{
 }
 
 .order-goods{
+   width: 100%;
+   height: auto;
     margin-top: 20rpx;
     background: #fff;
 }

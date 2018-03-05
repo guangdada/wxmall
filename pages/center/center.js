@@ -26,9 +26,6 @@ Page({
     var size = this.setCanvasSize();//动态设置画布大小
    // var initUrl = res.data.content.cardNum;
     //console.log("initUrl:" + initUrl)
-    var initUrl='12354'
-    this.createQrCode(initUrl, "mycanvas", size.w, size.h);
-    console.log("onload");
     //this.getUserInfo();
   },
   login : function(){
